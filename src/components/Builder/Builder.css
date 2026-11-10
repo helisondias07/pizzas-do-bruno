@@ -100,8 +100,8 @@
   .b-grid{grid-template-columns:1.1fr .9fr;gap:var(--s8)}
 }
 
-.pf-th{position:relative;flex:none;border-radius:50%;overflow:hidden}
-.pf-th img{position:absolute;inset:-4%;width:108%;height:108%;opacity:0;transition:opacity var(--d2) var(--ease)}
+.pf-th{position:relative;flex:none;flex-shrink:0;aspect-ratio:1/1;width:44px;height:44px;min-width:44px;min-height:44px;max-width:44px;max-height:44px;border-radius:50%;overflow:hidden;box-sizing:border-box}
+.pf-th img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;aspect-ratio:1/1;opacity:0;transition:opacity var(--d2) var(--ease);transform:scale(1.06);transform-origin:center}
 .pf-th img.in{opacity:1}
 /* ---------- campo de sabor (abre o seletor) ---------- */
 .pick-fld{width:100%;min-height:56px;display:flex;align-items:center;gap:var(--s3);padding:6px var(--s4) 6px 6px;border:1.5px solid var(--line-2);border-radius:var(--r-md);background:#fff;font:600 15px/1.25 'DM Sans',sans-serif;color:var(--ink);text-align:left;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:border-color var(--d2) var(--ease),box-shadow var(--d2) var(--ease),transform var(--d1) var(--ease)}
@@ -110,7 +110,7 @@
   .pick-fld:hover{border-color:var(--red)}
 }
 
-.pf-th{width:44px;height:44px;background:radial-gradient(circle,#F6E3C0 0 54%,#E8C089 56% 72%,#D9A35E 74%)}
+.pf-th{background:radial-gradient(circle,#F6E3C0 0 54%,#E8C089 56% 72%,#D9A35E 74%)}
 .pick-fld:not(.has) .pf-th{background:repeating-conic-gradient(from 0deg,#F3E2C6 0 10deg,#FBF1E4 10deg 20deg);box-shadow:inset 0 0 0 1.5px var(--line-2)}
 .pf-t{flex:1;min-width:0}
 .pick-fld:not(.has) .pf-t{color:var(--muted);font-weight:500}
@@ -132,3 +132,11 @@
 @keyframes ckIn{from{opacity:0;transform:translateY(8px) scale(.96)}}
 @keyframes nudge{0%,100%{box-shadow:0 0 0 0 rgba(43,26,16,.0)}40%{box-shadow:0 0 0 8px rgba(43,26,16,.12);transform:translateY(-1px)}}
 @keyframes hintPulse{50%{transform:scale(1.03)}}
+
+/* ---------- animação: pizza cortada entra na caixa ---------- */
+.pack-stage{position:fixed;inset:0;z-index:400;pointer-events:none;display:grid;place-items:center;padding:16px;background:rgba(43,26,16,.18)}
+.pack-stage .pack-card{position:relative;width:min(420px,92vw);aspect-ratio:400/360}
+.pack-stage svg.pack-svg{display:block;width:100%;height:100%;overflow:visible;filter:drop-shadow(0 18px 28px rgba(60,30,10,.28))}
+@media (prefers-reduced-motion:reduce){
+  .pack-stage{display:none}
+}
