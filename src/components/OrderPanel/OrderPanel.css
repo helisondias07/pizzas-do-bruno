@@ -1,0 +1,34 @@
+/* micro-interações */
+.order h3{position:relative}
+.koa{position:absolute;right:38px;top:50%;width:40px;height:32px;color:var(--red);opacity:0;transform:translateY(-50%) scale(.4);pointer-events:none}
+.koa svg{width:100%;height:100%}
+.koa em{position:absolute;right:120%;top:50%;transform:translateY(-50%);white-space:nowrap;font:italic 400 14px 'Fraunces',serif;color:var(--brown);background:#fff;border:1px solid rgba(90,58,36,.15);border-radius:99px;padding:3px 10px}
+.koa.pop{animation:koa 1.9s var(--ease) both}
+.stepper{display:flex;align-items:center;justify-content:space-between;border:1.5px solid rgba(90,58,36,.18);border-radius:14px;padding:6px 6px 6px 14px;background:#fff}
+.stepper b{font-weight:600;font-size:15px}
+.stepper small{color:var(--muted);font-weight:500}
+.stepper .q{display:flex;align-items:center;gap:10px}
+.stepper button,.ol-q button{width:38px;height:38px;border-radius:10px;border:0;background:rgba(90,58,36,.08);font-size:20px;cursor:pointer}
+.stepper span{min-width:18px;text-align:center;font-weight:700}
+.order{background:#fff;border:1.5px solid rgba(90,58,36,.14);border-radius:20px;padding:16px}
+.order h3{font-family:'Fraunces',serif;font-weight:500;font-size:22px;display:flex;justify-content:space-between;align-items:center}
+.order h3 span{font-family:'DM Sans';font-size:12px;background:var(--red);color:#fff;border-radius:99px;padding:2px 9px;font-weight:700}
+#orderList{list-style:none;margin:10px 0}
+#orderList li{display:grid;grid-template-columns:1fr auto;gap:4px 10px;padding:10px 0;border-bottom:1px dashed rgba(90,58,36,.18);font-size:14px}
+#orderList li.empty{display:block;color:var(--muted);font-size:13.5px;border:0}
+.ol-p{font-weight:700;color:var(--red);white-space:nowrap}
+.ol-q{grid-column:1/3;display:flex;gap:6px}
+.ol-q button{width:30px;height:30px;font-size:16px}
+.tot{display:grid;gap:4px;font-size:14px;color:var(--brown);margin-top:8px}
+.tot div{display:flex;justify-content:space-between}
+.tot .grand{font-size:18px;color:var(--ink);font-weight:700;margin-top:6px;padding-top:8px;border-top:1px solid rgba(90,58,36,.14)}
+.tot .grand b{font-family:'Fraunces',serif;font-size:28px;color:var(--red);font-weight:500}
+.send{width:100%;margin-top:14px}
+.sched{font-size:13px;color:var(--red);margin-top:8px;text-align:center}
+.q button{min-width:44px;min-height:44px}
+.send.is-off{opacity:.45}
+.send-note{text-align:center}
+.order{border-radius:var(--r-lg)}
+.stepper{border-radius:var(--r-md)}
+.order{padding:var(--card-pad)}
+@keyframes koa{0%{opacity:0;transform:translateY(-10%) scale(.4) rotate(-20deg)}18%{opacity:1;transform:translateY(-70%) scale(1.15) rotate(8deg)}30%{transform:translateY(-50%) scale(1) rotate(-4deg)}40%{transform:translateY(-50%) rotate(0)}85%{opacity:1}100%{opacity:0;transform:translateY(-50%) scale(.9)}}

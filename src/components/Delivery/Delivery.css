@@ -1,0 +1,21 @@
+/* área */
+.area{padding:70px 0}
+.area form{display:flex;gap:8px;margin-top:20px}
+.area form .btn{height:50px;flex:none;padding:0 20px}
+.area-out{margin-top:14px;border-radius:16px;padding:14px 16px;display:grid;gap:4px;font-size:14px}
+.area-out:empty{display:none}
+.area-out.ok{background:rgba(63,122,47,.09);color:#2C5A20}
+.area-out.no{background:rgba(215,40,47,.07);color:#8E1E22}
+.area-out b{font-size:15px}
+.area-out a{text-decoration:underline;font-weight:700}
+.area-out button{justify-self:start;margin-top:6px;border:0;background:var(--basil);color:#fff;border-radius:99px;padding:8px 14px;font-weight:700;font-size:13px;cursor:pointer}
+.area{padding-block:var(--sec-y)}
+.area{padding-bottom:0}
+.area form{max-width:560px;margin:0 auto}
+.area-out{max-width:560px;margin:var(--s3) auto 0}
+.area-note{text-align:center;margin-top:var(--s3)}
+.area .ac-wrap,.area .ac{max-width:560px;margin-inline:auto}
+.area form .btn{height:var(--btn-h-sm)}
+.area form{gap:var(--s2)}
+.area form input{height:var(--field-h)}
+.area-out{border-radius:var(--r-md)}

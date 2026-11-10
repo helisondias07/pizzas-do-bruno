@@ -1,0 +1,14 @@
+---
+import './Reels.css';
+/* Reels: renderizados no build a partir de src/data/reels.json; o cliente rebusca reels.json (atualizável sem rebuild) */
+import reelsData from '../../data/reels.json';
+import { card } from '../../lib/reels-markup.js';
+const reels = (Array.isArray(reelsData) ? reelsData : reelsData.data || []).filter((r) => r && r.thumbnail_url && (!r.media_product_type || r.media_product_type === 'REELS')).slice(0, 12);
+---
+<section class="sec" id="reels"><div class="wrap">
+  <div class="sec-head rv"><div class="kicker">Direto do forno</div><h2 class="h2">Assista e <em>tente</em> não pedir.</h2></div>
+  <div class="reels" id="reelsRow" aria-label="Reels do Instagram">
+    {reels.map((r) => <Fragment set:html={card(r)} />)}
+  </div>
+  <div class="reels-head reels-foot"><p class="mock-note">Prévia visual · os reels virão do Instagram do Bruno</p><a href="https://www.instagram.com/pizzasdobruno/reels/" target="_blank" rel="noopener"><svg><use href="#ic-ig"/></svg>@pizzasdobruno</a></div>
+</div></section>

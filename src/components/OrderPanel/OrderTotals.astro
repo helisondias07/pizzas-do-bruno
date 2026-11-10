@@ -1,0 +1,11 @@
+---
+import './OrderPanel.css';
+/* totais + botão "Pedir pelo WhatsApp" */
+---
+      <div class="order" style="padding-top:12px">
+        <div class="tot"><div><span>Subtotal</span><span id="tSub">R$ 0,00</span></div><div><span>Entrega</span><span id="tFee">—</span></div><div class="grand"><span>Total</span><b id="tTot">R$ 0,00</b></div></div>
+        <p class="tiny" id="tNote"></p>
+        <a class="btn btn-red send" id="sendBtn" data-noauto="1" target="_blank" rel="noopener" href="#"><svg><use href="#ic-wa"/></svg><span class="t">Pedir pelo WhatsApp</span></a>
+        <p class="tiny send-note">O texto abre pronto no WhatsApp. É só conferir e tocar em enviar.</p>
+        <p class="sched" id="schedNote"></p>
+      </div>

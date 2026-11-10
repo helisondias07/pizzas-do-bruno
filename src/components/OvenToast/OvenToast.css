@@ -1,0 +1,10 @@
+#ovenToast{max-width:calc(100vw - var(--gl) - var(--gr));position:fixed;left:50%;top:50%;z-index:90;transform:translate(-50%,-50%) scale(.9);opacity:0;pointer-events:none;background:#2B1A10;color:#FBF1E4;border-radius:22px;padding:18px 24px 16px;text-align:center;box-shadow:0 30px 60px rgba(43,26,16,.35);transition:opacity var(--d2) var(--ease),transform var(--d2) var(--ease)}
+#ovenToast.show{opacity:1;transform:translate(-50%,-50%) scale(1)}
+#ovenToast .mini{width:110px;margin:0 auto 8px;position:relative;height:70px}
+#ovenToast .mini .door{position:absolute;left:30px;bottom:6px;width:50px;height:36px;border-radius:25px 25px 4px 4px;background:radial-gradient(circle at 50% 90%,#FFD27A,#F0572B 55%,#5A1E0E)}
+#ovenToast .mini .dome{position:absolute;inset:0 0 0;border-radius:55px 55px 8px 8px;background:radial-gradient(circle at 40% 30%,#E48A5E,#8F3A22)}
+#ovenToast .mini .pz{position:absolute;left:38px;bottom:14px;width:34px;height:10px;border-radius:50%;background:radial-gradient(#F2CC7E,#C8402A 70%,#DDA458 72%)}
+#ovenToast.show .pz{animation:inOven 1s .15s var(--ease) both}
+#ovenToast b{font-family:'Fraunces',serif;font-weight:400;font-size:20px;display:block}
+#ovenToast small{font-size:12.5px;opacity:.75}
+@keyframes inOven{from{transform:translate(70px,26px) scale(1.6)}to{transform:none}}

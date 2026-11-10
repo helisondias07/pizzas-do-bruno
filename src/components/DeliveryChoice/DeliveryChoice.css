@@ -1,0 +1,28 @@
+/* ---------- Entrega × Retirada: cards ---------- */
+.tipo{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3)}
+.tipo button,.sh-deliv .tipo button{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:var(--s3);min-height:112px;height:auto;padding:var(--s4);border:1.5px solid var(--line);border-radius:var(--r-md);background:#fff;color:var(--ink);text-align:left;font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:border-color var(--d2) var(--ease),background-color var(--d2) var(--ease),box-shadow var(--d2) var(--ease),transform var(--d1) var(--ease)}
+.tp-ic{width:40px;height:40px;border-radius:var(--r-sm);display:grid;place-items:center;background:var(--cream);color:var(--brown);transition:background-color var(--d2) var(--ease),color var(--d2) var(--ease)}
+.tp-ic svg{width:var(--ico-lg);height:var(--ico-lg);fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.tp-t{display:flex;flex-direction:column;gap:2px;min-width:0}
+.tp-t b{font-size:16px;font-weight:700;line-height:1.2;letter-spacing:0;text-transform:none;color:var(--ink);padding:0}
+.tp-t small{font-size:12.5px;line-height:1.35;color:var(--muted);transition:color var(--d2) var(--ease)}
+.tp-ck{position:absolute;right:var(--s3);top:var(--s3);width:22px;height:22px;border-radius:50%;border:1.5px solid var(--line-2);transition:background-color var(--d2) var(--ease),border-color var(--d2) var(--ease)}
+.tp-ck:after{content:"";position:absolute;left:6.5px;top:3px;width:5.5px;height:10px;border:solid #fff;border-width:0 2.2px 2.2px 0;transform:rotate(45deg) scale(0);transition:transform var(--d2) var(--ease-spring)}
+.tipo button.on{border-color:var(--red);background:#FFF8F2;box-shadow:0 0 0 3px rgba(208,36,43,.10)}
+.tipo button.on .tp-ic{background:var(--red);color:#fff}
+.tipo button.on .tp-t small{color:var(--brown)}
+.tipo button.on .tp-ck{background:var(--red);border-color:var(--red)}
+.tipo button.on .tp-ck:after{transform:rotate(45deg) scale(1)}
+.tipo button:active{transform:scale(.98)}
+@media (hover:hover){
+  .tipo button:not(.on):hover{border-color:var(--line-2);box-shadow:0 8px 20px -14px rgba(90,58,36,.5)}
+}
+
+.tipo-note{font-size:13px;line-height:1.45;color:var(--brown);margin-top:var(--s3);padding-left:var(--s3);border-left:2px solid var(--gold)}
+.tipo-note:empty{display:none}
+.fld>.lbl#tipoLbl{margin-bottom:var(--s3)}
+.sh-deliv{display:block;padding:var(--s3)}
+.sh-deliv>b{display:block;padding:0 0 var(--s3) 2px}
+.sh-deliv .tipo button{min-height:96px;padding:var(--s3)}
+.sh-deliv .tp-ic{width:36px;height:36px}
+.sh-deliv .tipo-note{margin-top:var(--s3)}

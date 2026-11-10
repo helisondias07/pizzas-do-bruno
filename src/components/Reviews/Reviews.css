@@ -1,0 +1,34 @@
+/* reviews */
+.revs{overflow:hidden}
+.rev-track{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:26px var(--gr) 8px var(--gl);margin:0 calc(-1*var(--gr)) 0 calc(-1*var(--gl));scroll-padding-inline:var(--gl) var(--gr);scrollbar-width:none}
+.rev-track::-webkit-scrollbar{display:none}
+.rev{flex:0 0 78vw;max-width:330px;scroll-snap-align:center;background:linear-gradient(160deg,#3A2416,#1E120B);color:#FBF1E4;border-radius:24px;padding:18px 18px 16px;aspect-ratio:4/5;display:flex;flex-direction:column;position:relative;box-shadow:0 24px 40px -26px rgba(43,26,16,.7)}
+.rev:nth-child(3n+2){background:linear-gradient(160deg,#D7282F,#9E1B21)}
+.rev:nth-child(3n){background:linear-gradient(160deg,#F4E4CE,#E9CFA9);color:var(--ink)}
+.rev-bar{position:absolute;left:14px;right:14px;top:10px;height:2.5px;border-radius:2px;background:rgba(255,255,255,.3);overflow:hidden}
+.rev-bar i{position:absolute;inset:0;background:currentColor;opacity:.9;transform-origin:left;animation:bar 4.2s linear infinite}
+.rev-top{display:flex;align-items:center;gap:8px;font-size:13px;margin-top:10px}
+.rev-top .av{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.18);display:grid;place-items:center;font-weight:700}
+.rev-top .ex{margin-left:auto;font-size:10px;letter-spacing:.14em;font-weight:700;border:1px dashed currentColor;padding:3px 7px;border-radius:6px;opacity:.8}
+.rev blockquote{font-family:'Fraunces',serif;font-size:clamp(22px,6vw,27px);line-height:1.18;margin:auto 0;letter-spacing:-.01em}
+.rev figcaption{display:flex;justify-content:space-between;font-size:12.5px;opacity:.85}
+.stars{color:#F2B233;letter-spacing:2px}
+.rev-dots{display:flex;gap:6px;justify-content:center;margin-top:14px}
+.rev-dots button{width:8px;height:8px;border-radius:99px;border:0;background:rgba(90,58,36,.22);cursor:pointer;transition:all var(--d2) var(--ease)}
+.rev-dots button.on{width:24px;background:var(--red)}
+@media (min-width:900px){
+  .rev{flex-basis:320px}
+}
+
+.rev-dots{gap:0}
+.rev-dots button{position:relative;width:28px;height:44px;background:none!important}
+.rev-dots button:after{content:"";position:absolute;left:50%;top:50%;width:8px;height:8px;margin:-4px 0 0 -4px;border-radius:99px;background:rgba(90,58,36,.28);transition:all var(--d2) var(--ease)}
+.rev-dots button.on{width:40px}
+.rev-dots button.on:after{width:24px;margin-left:-12px;background:var(--red)}
+.revs{padding-top:var(--sec-y)}
+.rev-track{padding-top:var(--s2)}
+.rev{border-radius:var(--r-lg)}
+@media (min-width:720px){
+  .rev{flex-basis:300px}
+  .rev-track{margin-inline:calc((100% - 100vw)/2);padding-inline:calc((100vw - 100%)/2);scroll-padding-inline:calc((100vw - 100%)/2)}
+}

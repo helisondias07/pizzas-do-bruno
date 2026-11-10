@@ -1,0 +1,22 @@
+/* fontes self-hosted (subset latin, variáveis, swap) */
+:root{--gutter:max(12px,clamp(18px,5vw,24px));--gl:max(var(--gutter),env(safe-area-inset-left));--gr:max(var(--gutter),env(safe-area-inset-right));--cream:#FBF1E4;--cream2:#F4E4CE;--ink:#2B1A10;--brown:#5A3A24;--muted:#806149;--red:#D0242B;--gold:#C98A3B;--basil:#3F7A2F;--ease:cubic-bezier(.22,1,.36,1)}
+/* ===================== POLIMENTO FINAL — tokens ===================== */
+:root{
+  /* espaçamento (escala 4/8) */
+  --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:24px;--s6:32px;--s7:48px;--s8:64px;
+  --sec-y:clamp(64px,9vw,112px);      /* padding vertical de seção */
+  --sec-y-tight:clamp(32px,4.5vw,56px);/* seção seguida com o mesmo fundo */
+  --head-gap:clamp(24px,3vw,40px);     /* título da seção → conteúdo */
+  --card-pad:clamp(16px,2.4vw,28px);   /* padding interno de cards */
+  --gap:clamp(12px,1.6vw,16px);        /* gap entre cards/itens */
+  --btn-gap:var(--s3);                 /* entre botões vizinhos */
+  /* tamanhos */
+  --btn-h:56px;--btn-h-sm:50px;--field-h:50px;--tap:48px;
+  --ico:20px;--ico-sm:18px;--ico-lg:24px;
+  /* raios */
+  --r-pill:999px;--r-lg:24px;--r-md:16px;--r-sm:12px;
+  /* movimento */
+  --ease:cubic-bezier(.22,1,.36,1);--ease-io:cubic-bezier(.65,0,.35,1);--ease-spring:cubic-bezier(.34,1.56,.64,1);
+  --d1:.2s;--d2:.35s;--d3:.6s;--d4:1.1s;--d5:1.6s;
+  --line:rgba(90,58,36,.16);--line-2:rgba(90,58,36,.26);
+}

@@ -1,0 +1,12 @@
+.ag-x:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+.again{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;background:#fff;border:1.5px solid rgba(90,58,36,.14);border-radius:20px;padding:14px 14px 14px 16px}
+.again .lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--red)}
+.again p{font-size:14px;color:var(--ink);margin-top:4px;line-height:1.35}
+.ag-t{flex:1 1 200px;min-width:0}
+.ag-a{display:flex;align-items:center;gap:6px}
+.ag-go{height:46px;padding:0 20px;font-size:14px}
+.ag-x{border:0;background:none;color:var(--muted);font:500 13px 'DM Sans';text-decoration:underline;min-height:44px;padding:0 8px;cursor:pointer}
+.ag-go{height:var(--btn-h-sm)}
+.ag-go{padding:0 var(--s5)}
+.again{border-radius:var(--r-md)}
+.again{padding:var(--s3) var(--s3) var(--s3) var(--s4)}

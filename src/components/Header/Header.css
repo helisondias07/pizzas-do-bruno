@@ -1,0 +1,19 @@
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;padding:14px 0;transition:background var(--d2) var(--ease),box-shadow var(--d2) var(--ease)}
+.nav.scrolled{background:rgba(251,241,228,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(90,58,36,.1)}
+.nav .wrap{display:flex;align-items:center;justify-content:center;gap:12px}
+.brand .logo{width:46px;height:35px}
+.status{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--brown);border:1px solid rgba(90,58,36,.18);padding:7px 12px;border-radius:99px;background:rgba(255,255,255,.4);max-width:72vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.status i{flex:none;width:7px;height:7px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite}
+.is-open .status i{background:var(--basil)}
+.navlinks{display:none;gap:28px;font-size:14px;font-weight:500;color:var(--brown)}
+@media (min-width:900px){
+  .navlinks{display:flex}
+}
+
+/* botão de som (cabeçalho, à direita do logo centralizado) */
+.nav .wrap{position:relative}
+@media (min-width:980px){
+  .navlinks a{padding:12px 0}
+}
+
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(201,138,59,.55)}70%,100%{box-shadow:0 0 0 8px rgba(201,138,59,0)}}

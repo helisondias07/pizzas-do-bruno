@@ -1,0 +1,31 @@
+---
+import './AddressModal.css';
+/* Etapas de endereço dentro da sacola: já sou cliente? → confirmar / formulário + mapa */
+---
+   <div class="sh-view" id="vAsk" hidden>
+    <p class="ask-sub">Assim o Bruno já sabe onde entregar.</p>
+    <div class="ask-opts">
+      <a class="ask-o" id="askYes" data-noauto="1" target="_blank" rel="noopener" href="#"><b>Já sou cliente</b><span id="askYesSub">O Bruno já tem meu endereço</span></a>
+      <button type="button" class="ask-o" id="askNo"><b>É meu primeiro pedido</b><span>Informar endereço rapidinho</span></button>
+    </div>
+   </div>
+   <div class="sh-view" id="vConfirm" hidden>
+    <div class="cf-box"><span class="lbl">Entregar em:</span><p id="cfAddr"></p><p class="tiny" id="cfExtra"></p></div>
+    <div class="ask-opts">
+      <a class="btn btn-red send" id="cfYes" data-noauto="1" target="_blank" rel="noopener" href="#"><svg><use href="#ic-wa"/></svg><span class="t">Confirmar</span></a>
+      <button type="button" class="btn btn-ghost" id="cfOther">Outro endereço</button>
+    </div>
+   </div>
+   <div class="sh-view" id="vForm" hidden>
+    <p class="ask-sub">Boas-vindas! Só o necessário pra entrega chegar certinho. Nada de cadastro.</p>
+      <div class="fld" id="bairroWrap"><label for="bairro">Bairro <span class="req" aria-hidden="true">*</span></label><select id="bairro" required aria-required="true"></select><p class="tiny">Bairros e taxas de exemplo, a confirmar.</p></div>
+      <div class="fld"><label for="fRua">Rua</label><input type="text" id="fRua" autocomplete="address-line1" placeholder="Ex.: Rua das Palmeiras"></div>
+      <div class="fld num-row"><label for="fNum">Número</label><div class="nr"><input type="text" id="fNum" inputmode="numeric" autocomplete="off" placeholder="Ex.: 123"><label class="sn"><input type="checkbox" id="fSN"><span class="bx" aria-hidden="true"></span>Sem número</label></div></div>
+      <div class="fld"><label for="fComp">Complemento <small>(opcional)</small></label><input type="text" id="fComp" autocomplete="address-line2" placeholder="Ex.: ap 2, fundos"></div>
+      <div class="fld" id="refWrap"><label for="fRef">Ponto de referência</label><input type="text" id="fRef" placeholder="Ex.: perto da padaria, portão azul"></div>
+      <div class="fld" id="addrWrap"><span class="lbl">Sem nome de rua? Use o mapa</span>
+        <div class="loc"><button type="button" class="loc-btn" id="locBtn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-6.2-6.5-11a6.5 6.5 0 0 1 13 0c0 4.8-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></svg><span>Usar minha localização</span></button>
+          <p class="loc-st" id="locSt" aria-live="polite"></p><div class="loc-map" id="locMap" hidden></div></div></div>
+      <p class="tiny">Informe o bairro e a rua <b>ou</b> a localização.</p>
+    <p class="form-err" id="formErr" aria-live="polite"></p>
+   </div>

@@ -1,0 +1,10 @@
+---
+import './Reviews.css';
+import { REVIEWS } from '../../data/index.js';
+import { reviewDotHTML, reviewHTML } from './review-markup.js';
+---
+<section class="sec revs"><div class="wrap">
+  <div class="sec-head rv"><div class="kicker">Quem provou</div><h2 class="h2">Quem provou, <em>voltou</em>.</h2><p class="sub"><span class="ph-note">Exemplo</span> As avaliações reais dos clientes entram aqui.</p></div>
+  <div class="rev-track" id="revTrack">{REVIEWS.map((r) => <Fragment set:html={reviewHTML(r)} />)}</div>
+  <div class="rev-dots" id="revDots">{REVIEWS.map((r, i) => <Fragment set:html={reviewDotHTML(r, i)} />)}</div>
+</div></section>

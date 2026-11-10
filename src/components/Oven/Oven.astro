@@ -1,0 +1,64 @@
+---
+import './Oven.css';
+---
+<section class="oven-band" id="forno" aria-labelledby="ovenTtl"><div class="wrap ov-grid">
+  <div class="ov-art" aria-hidden="true"><svg class="oven" viewBox="0 0 520 400">
+    <defs>
+      <linearGradient id="ovStone" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EAD6B8"/><stop offset="1" stop-color="#CDAE85"/></linearGradient>
+      <linearGradient id="ovSlab" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F6E8D0"/><stop offset="1" stop-color="#D6BB93"/></linearGradient>
+      <radialGradient id="ovDome" cx="42%" cy="30%" r="80%"><stop offset="0" stop-color="#E48A5E"/><stop offset=".55" stop-color="#C45F3A"/><stop offset="1" stop-color="#8F3A22"/></radialGradient>
+      <linearGradient id="ovChim" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#B9532F"/><stop offset=".5" stop-color="#D47549"/><stop offset="1" stop-color="#9A4226"/></linearGradient>
+      <radialGradient id="ovIn" cx="50%" cy="85%" r="80%"><stop offset="0" stop-color="#4A2414"/><stop offset="1" stop-color="#170A05"/></radialGradient>
+      <radialGradient id="ovCold" cx="50%" cy="80%" r="80%"><stop offset="0" stop-color="#2C2A2E"/><stop offset="1" stop-color="#121114"/></radialGradient>
+      <linearGradient id="ovFl" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#FFE9A8"/><stop offset=".35" stop-color="#FFB443"/><stop offset=".75" stop-color="#F0572B"/><stop offset="1" stop-color="#D7282F" stop-opacity="0"/></linearGradient>
+      <linearGradient id="ovFl2" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#FFFBEA"/><stop offset=".5" stop-color="#FFD873"/><stop offset="1" stop-color="#FF9A3C" stop-opacity="0"/></linearGradient>
+      <radialGradient id="ovGlow" cx="50%" cy="60%" r="50%"><stop offset="0" stop-color="#FFB35C" stop-opacity=".85"/><stop offset=".5" stop-color="#FF8A3D" stop-opacity=".3"/><stop offset="1" stop-color="#FF8A3D" stop-opacity="0"/></radialGradient>
+      <linearGradient id="ovLog" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7A4A2C"/><stop offset="1" stop-color="#4A2A18"/></linearGradient>
+      <linearGradient id="ovPeel" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#C99A62"/><stop offset=".5" stop-color="#E2BB86"/><stop offset="1" stop-color="#B9864F"/></linearGradient>
+      <filter id="ovBlur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>
+      <filter id="ovSmoke" x="-100%" y="-50%" width="300%" height="200%"><feGaussianBlur stdDeviation="2.4"/></filter>
+      <filter id="ovHeat" x="-20%" y="-20%" width="140%" height="140%"><feTurbulence type="fractalNoise" baseFrequency=".008 .03" numOctaves="1" seed="4" result="n"><animate attributeName="baseFrequency" dur="5s" values=".008 .03;.01 .042;.008 .03" repeatCount="indefinite"/></feTurbulence><feDisplacementMap in="SourceGraphic" in2="n" scale="3.2" xChannelSelector="R" yChannelSelector="G" result="d"/><feGaussianBlur in="d" stdDeviation=".7"/></filter>
+      <clipPath id="ovMouth"><path d="M192 240V198a68 68 0 0 1 136 0v42z"/></clipPath>
+    </defs>
+    <ellipse cx="260" cy="372" rx="226" ry="15" fill="rgba(90,58,36,.22)" filter="url(#ovBlur)"/>
+    <!-- chaminé + fumaça -->
+    <rect x="300" y="44" width="34" height="50" rx="3" fill="url(#ovChim)"/><rect x="294" y="36" width="46" height="11" rx="3" fill="#A9472C"/><rect x="294" y="36" width="46" height="4" rx="2" fill="#E08A5E" opacity=".6"/>
+    <g class="ov-smoke" filter="url(#ovSmoke)"><path d="M317 32c-9-14 9-24 0-38s9-24 0-38" /><path d="M321 30c-8-14 10-22 1-36s8-24-1-38" /></g>
+    <g class="ov-haze"><path d="M310 30c-6-10 6-16 0-26M326 30c-6-10 6-16 0-26"/></g>
+    <!-- base -->
+    <rect x="72" y="252" width="376" height="112" rx="12" fill="url(#ovStone)"/>
+    <g stroke="rgba(90,58,36,.14)" stroke-width="1.4"><path d="M72 280h376M72 308h376M72 336h376"/><path d="M130 252v28M220 252v28M310 252v28M400 252v28M175 280v28M265 280v28M355 280v28M130 308v28M220 308v28M310 308v28M400 308v28M175 336v28M265 336v28M355 336v28"/></g>
+    <circle cx="260" cy="310" r="25" fill="#FBF1E4"/><circle cx="260" cy="310" r="25" fill="none" stroke="#C9A57A" stroke-width="1.2"/>
+    <svg x="238" y="294" width="44" height="33" viewBox="20 30 1060 800" style="color:#D7282F"><use href="#lp" fill="currentColor"/></svg>
+    <!-- cúpula -->
+    <path d="M96 244C96 122 172 64 260 64s164 58 164 180z" fill="url(#ovDome)"/>
+    <g fill="none" stroke="rgba(70,24,10,.2)" stroke-width="1.6" stroke-dasharray="30 4"><path d="M120 244C120 140 184 90 260 90s140 50 140 154"/><path d="M146 244C146 162 198 118 260 118s114 44 114 126"/></g>
+    <ellipse cx="200" cy="116" rx="78" ry="30" fill="#fff" opacity=".13" filter="url(#ovBlur)" transform="rotate(-18 200 116)"/>
+    <path class="ov-coldtint" d="M96 244C96 122 172 64 260 64s164 58 164 180z" fill="#3B3F52"/>
+    <!-- boca -->
+    <path d="M176 244v-46a84 84 0 0 1 168 0v46z" fill="#8A3720"/>
+    <g stroke="#6E2A17" stroke-width="1.6"><path d="M176 214h16M328 214h16M184 166l14 9M336 166l-14 9M215 128l7 14M305 128l-7 14M260 114v16"/></g>
+    <path d="M192 240V198a68 68 0 0 1 136 0v42z" fill="url(#ovIn)"/>
+    <path class="ov-cold" d="M192 240V198a68 68 0 0 1 136 0v42z" fill="url(#ovCold)"/>
+    <g clip-path="url(#ovMouth)">
+      <circle class="ov-glow" cx="260" cy="226" r="90" fill="url(#ovGlow)"/>
+      <g class="ov-logs"><rect x="214" y="222" width="70" height="13" rx="6.5" fill="url(#ovLog)" transform="rotate(-10 249 228)"/><rect x="236" y="224" width="70" height="13" rx="6.5" fill="url(#ovLog)" transform="rotate(12 271 230)"/><circle cx="217" cy="234" r="5" fill="#C98A5A"/><circle cx="304" cy="235" r="5" fill="#C98A5A"/><ellipse class="ov-ashglow" cx="260" cy="236" rx="40" ry="5" fill="#FF7A2E"/></g>
+      <g class="ov-fire" filter="url(#ovHeat)">
+        <path class="fl f1" d="M232 236c-20-8-22-38-8-58 0 18 10 18 10 2 14 16 20 42-2 56z" fill="url(#ovFl)"/>
+        <path class="fl f2" d="M262 238c-26-10-28-50-8-80 2 24 14 26 14 2 20 22 26 60-6 78z" fill="url(#ovFl)"/>
+        <path class="fl f3" d="M290 236c-18-8-20-34-6-52 0 14 8 16 9 2 12 14 16 38-3 50z" fill="url(#ovFl)"/>
+        <path class="fl f4" d="M262 238c-14-6-16-30-4-46 2 14 8 14 9 2 10 14 12 36-5 44z" fill="url(#ovFl2)"/>
+      </g>
+      <g class="ov-embers" fill="#FFC56B"><circle cx="240" cy="214" r="1.6"/><circle cx="256" cy="206" r="1.2"/><circle cx="272" cy="212" r="1.5"/><circle cx="286" cy="208" r="1.1"/><circle cx="248" cy="200" r="1.3"/><circle cx="266" cy="196" r="1"/></g>
+    </g>
+    <!-- soleira + reflexo -->
+    <rect x="58" y="240" width="404" height="20" rx="7" fill="url(#ovSlab)"/>
+    <ellipse class="ov-floor" cx="260" cy="246" rx="116" ry="8" fill="#FFA24A" filter="url(#ovSmoke)"/>
+    <!-- pá -->
+    <g transform="rotate(9 470 250)"><rect x="463" y="96" width="9" height="190" rx="4.5" fill="url(#ovPeel)"/><path d="M446 286h43c4 0 8 4 8 9v52c0 9-9 16-29 16s-29-7-29-16v-52c0-5 3-9 7-9z" fill="url(#ovPeel)"/><path d="M452 296h33" stroke="#fff" stroke-opacity=".35" stroke-width="2" stroke-linecap="round"/></g>
+  </svg></div>
+  <div class="ov-txt rv"><div class="kicker">O forno do Bruno</div>
+    <h2 class="h2" id="ovenTtl" data-oven-h>Forno aceso até 23h</h2>
+    <p class="sub" id="ovenSub">Quinta a sábado, das 18h às 23h.</p>
+    <a class="btn btn-ghost" href="#montar">Montar meu pedido</a></div>
+</div></section>

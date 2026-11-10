@@ -1,0 +1,9 @@
+---
+import './OrderPanel.css';
+/* lista do pedido + Coca (lógica em order-panel.client.js) */
+---
+      <div class="order">
+        <h3>Seu pedido <span class="koa" id="koa" aria-hidden="true"><svg viewBox="20 30 1060 800"><use href="#lp" fill="currentColor"/></svg><em>Boa escolha!</em></span><span id="cartCount">0</span></h3>
+        <ul id="orderList"></ul>
+        <div class="stepper"><span><b>Coca-Cola 1,5 L</b> <small>R$ 11</small></span><span class="q"><button type="button" id="cocaMinus" aria-label="Menos Coca">−</button><span id="cocaQ">0</span><button type="button" id="cocaPlus" aria-label="Mais Coca">+</button></span></div>
+      </div>

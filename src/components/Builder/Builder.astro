@@ -1,0 +1,34 @@
+---
+import './Builder.css';
+/* Montador: pizza SVG + sabores + borda + pedido */
+import MaisPedidas from '../MaisPedidas/MaisPedidas.astro';
+import BordaOption from './BordaOption.astro';
+import OrderList from '../OrderPanel/OrderList.astro';
+import OrderTotals from '../OrderPanel/OrderTotals.astro';
+import DeliveryChoice from '../DeliveryChoice/DeliveryChoice.astro';
+---
+<section class="sec builder" id="montar"><div class="wrap">
+  <div class="sec-head rv"><div class="kicker">Monte seu pedido</div><h2 class="h2">Monte a <em>sua</em> pizza.</h2><p class="sub">Inteira ou meio a meio, com ou sem borda. O pedido sai prontinho no WhatsApp do Bruno.</p></div>
+  <MaisPedidas />
+  <div class="b-grid">
+    <div class="viz-col">
+      <div class="viz-wrap" id="vizWrap" role="button" tabindex="0" aria-haspopup="dialog" aria-label="Escolher o sabor da pizza"><div id="pizzaViz"></div><div class="viz-hint" id="vizHint"><span>Toque na pizza<br>para escolher o sabor</span></div><div class="viz-halves" aria-hidden="true"><span data-w="A">1ª metade</span><span data-w="B">2ª metade</span></div></div>
+      <div class="viz-meta"><span id="halfLbl">Sua pizza</span><b id="curPrice">—</b></div>
+      <div class="ing" id="ing" aria-live="polite"></div>
+    </div>
+    <div class="panel">
+      <div class="fld"><span class="lbl">Tipo</span><div class="seg" id="modeSeg"><button type="button" class="on" data-v="inteira">Inteira</button><button type="button" data-v="meio">Meio a meio</button></div>
+        <p class="tiny">Meio a meio cobra o sabor de maior valor.</p></div>
+      <div class="two"><div class="fld"><label for="pfA" id="aLbl">Sabor</label><select id="sA" hidden tabindex="-1" aria-hidden="true"></select><button type="button" class="pick-fld" id="pfA" data-w="A" aria-haspopup="dialog"><i class="pf-th" aria-hidden="true"></i><span class="pf-t">Escolha o sabor…</span><span class="pf-p"></span><svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1l5 5 5-5"/></svg></button></div>
+        <div class="fld" id="bWrap" hidden><label for="pfB">Metade 2</label><select id="sB" hidden tabindex="-1" aria-hidden="true"></select><button type="button" class="pick-fld" id="pfB" data-w="B" aria-haspopup="dialog"><i class="pf-th" aria-hidden="true"></i><span class="pf-t">Escolha o sabor…</span><span class="pf-p"></span><svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1l5 5 5-5"/></svg></button></div></div>
+      <BordaOption />
+      <button class="btn btn-ink" id="addBtn" type="button" disabled>+ Adicionar ao pedido</button>
+      <OrderList />
+      <div class="fld"><span class="lbl" id="tipoLbl">Como você quer receber?</span><DeliveryChoice id="tipoSeg" labelledby="tipoLbl" selected="entrega" />
+        <p class="tipo-note" id="entNote">Endereço e localização você informa no próximo passo, ao tocar em “Pedir pelo WhatsApp”.</p>
+        <p class="tipo-note" id="retNote" hidden>Sem taxa. O horário você combina com o Bruno no WhatsApp.</p></div>
+      <div class="fld"><label for="fObs">Observações</label><textarea id="fObs" placeholder="Ex.: interfone quebrado, deixar na portaria…"></textarea></div>
+      <OrderTotals />
+    </div>
+  </div>
+</div></section>

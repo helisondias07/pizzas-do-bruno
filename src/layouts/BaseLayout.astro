@@ -1,0 +1,75 @@
+---
+/* Layout base: <head> (SEO/OG, preload de fontes e da imagem do hero), estilos globais e tracking. */
+import '../styles/fonts.css';
+import '../styles/tokens.css';
+import '../styles/global.css';
+/* Ordem da cascata = ordem das regras no protótipo. Cada componente também importa o próprio CSS;
+   importar aqui primeiro só fixa a ordem final (o Vite não duplica). */
+import '../components/Header/Header.css';
+import '../components/Hero/Hero.css';
+import '../components/Ribbon/Ribbon.css';
+import '../components/Launch/Launch.css';
+import '../components/Reels/Reels.css';
+import '../components/About/About.css';
+import '../components/Featured/Featured.css';
+import '../components/Menu/Menu.css';
+import '../components/Oven/Oven.css';
+import '../components/OrderPanel/OrderPanel.css';
+import '../components/OvenToast/OvenToast.css';
+import '../components/Builder/Builder.css';
+import '../components/Delivery/Delivery.css';
+import '../components/Reviews/Reviews.css';
+import '../components/Final/Final.css';
+import '../components/Footer/Footer.css';
+import '../components/BottomBar/BottomBar.css';
+import '../components/Toast/Toast.css';
+import '../components/MaisPedidas/MaisPedidas.css';
+import '../components/Reorder/Reorder.css';
+import '../components/AddressModal/AddressModal.css';
+import '../components/CartSheet/CartSheet.css';
+import '../components/SoundToggle/SoundToggle.css';
+import '../components/DeliveryChoice/DeliveryChoice.css';
+import '../components/FlavorPicker/FlavorPicker.css';
+// URL pública absoluta (og:url / og:image): SITE_URL, ou o domínio de produção da Vercel; sem nenhum, fica o placeholder.
+const origin = process.env.SITE_URL || (process.env.VERCEL_PROJECT_PRODUCTION_URL ? 'https://' + process.env.VERCEL_PROJECT_PRODUCTION_URL : 'https://SITE_URL');
+const siteUrl = new URL(import.meta.env.BASE_URL.replace(/\/?$/, '/'), origin).href;
+---
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Bruno's Pizza · A pizza que você merece comer</title>
+<meta name="description" content="Pizza artesanal de fermentação longa, borda pintadinha e 32 sabores. Delivery de quinta a sábado, das 18h às 23h. Monte seu pedido e envie direto no WhatsApp.">
+<meta name="theme-color" content="#FBF1E4">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="og-image.jpg">
+<!-- Open Graph / Twitter — ⚠ troque SITE_URL pelo domínio final (URLs absolutas) -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Bruno's Pizza">
+<meta property="og:title" content="Bruno's Pizza · A pizza que você merece comer">
+<meta property="og:description" content="Massa de fermentação longa, borda pintadinha e 32 sabores. Quinta a sábado, das 18h às 23h. Peça pelo WhatsApp.">
+<meta property="og:url" content={siteUrl}>
+<meta property="og:image" content={siteUrl + 'og-image.jpg'}>
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Pizza artesanal do Bruno's Pizza com o título “A pizza que você merece comer”">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Bruno's Pizza · A pizza que você merece comer">
+<meta name="twitter:description" content="Massa de fermentação longa, borda pintadinha e 32 sabores. Peça pelo WhatsApp.">
+<meta name="twitter:image" content={siteUrl + 'og-image.jpg'}>
+<link rel="preload" href="fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="fonts/dmsans.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" type="image/avif" imagesrcset="img/pizza-top-cut-480.avif 480w, img/pizza-top-cut-720.avif 720w, img/pizza-top-cut-950.avif 950w" imagesizes="(min-width:980px) 62vw, 118vw" fetchpriority="high">
+
+<!-- ===== Tracking (desligado). Para ativar, preencha os IDs e descomente. =====
+<script>var GA_ID='G-XXXXXXXXXX', PIXEL_ID='000000000000000';</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config',GA_ID);</script>
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init',PIXEL_ID);fbq('track','PageView');</script>
+===== -->
+<script is:inline>if(/shot/.test(location.search))document.documentElement.classList.add('shot')</script>
+</head>
+<body>
+<slot />
+</body>
+</html>

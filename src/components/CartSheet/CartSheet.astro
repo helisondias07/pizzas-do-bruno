@@ -1,0 +1,21 @@
+---
+import './CartSheet.css';
+/* Sacola (mini-cart) em sheet: itens, entrega, endereço, envio */
+import AddressModal from '../AddressModal/AddressModal.astro';
+import DeliveryChoice from '../DeliveryChoice/DeliveryChoice.astro';
+---
+<section class="sheet" id="sheet" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="sheetTtl" hidden>
+  <div class="sh-grab" id="shGrab" aria-hidden="true"><span></span></div>
+  <div class="sh-h" id="shHead"><button type="button" class="sh-back" id="shBack" aria-label="Voltar" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><h2 id="sheetTtl">Seu pedido</h2><button type="button" class="sh-x" id="shX" aria-label="Fechar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+  <div class="sh-body" id="shBody">
+   <div class="sh-view" id="vCart">
+    <ul class="sh-list" id="shList"></ul>
+    <div class="sh-empty" id="shEmpty"><p>Seu pedido está vazio.</p><div class="mp-row" id="shMp"></div></div>
+    <button type="button" class="sh-coca" id="shCoca">+ Coca-Cola 1,5 L <small>R$ 11</small></button>
+    <div class="sh-deliv" id="shDeliv"><b id="shTipoLbl">Como você quer receber?</b><DeliveryChoice id="shTipo" labelledby="shTipoLbl" /><p class="tipo-note" id="shTipoNote"></p></div>
+   </div>
+   <AddressModal />
+  </div>
+  <div class="sh-f"><div class="sh-tot"><span>Total</span><b id="shTot">R$ 0,00</b></div><p class="sh-note" id="shNote"></p>
+    <a class="btn btn-red send" id="shSend" data-noauto="1" target="_blank" rel="noopener" href="#"><svg><use href="#ic-wa"/></svg><span class="t">Pedir pelo WhatsApp</span></a></div>
+</section>

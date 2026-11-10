@@ -1,0 +1,5 @@
+.ribbon{background:var(--red);color:var(--cream);overflow:hidden;white-space:nowrap;padding:14px 0;position:relative;z-index:3}
+.ribbon .track{display:inline-flex;gap:36px;animation:marq 32s linear infinite;font-family:'Fraunces',serif;font-style:italic;font-size:22px}
+.ribbon span{display:inline-flex;align-items:center;gap:36px}
+.ribbon span:after{content:"✳";font-style:normal;font-size:14px;opacity:.7}
+@keyframes marq{to{transform:translateX(-50%)}}

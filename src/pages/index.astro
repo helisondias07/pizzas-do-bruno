@@ -1,0 +1,68 @@
+---
+/* Página única. A ordem dos componentes = ordem do HTML original (previews/a2). */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SvgSprite from '../components/SvgSprite/SvgSprite.astro';
+import Header from '../components/Header/Header.astro';
+import Hero from '../components/Hero/Hero.astro';
+import Ribbon from '../components/Ribbon/Ribbon.astro';
+import Launch from '../components/Launch/Launch.astro';
+import Reels from '../components/Reels/Reels.astro';
+import About from '../components/About/About.astro';
+import Featured from '../components/Featured/Featured.astro';
+import Menu from '../components/Menu/Menu.astro';
+import Oven from '../components/Oven/Oven.astro';
+import Builder from '../components/Builder/Builder.astro';
+import Delivery from '../components/Delivery/Delivery.astro';
+import Reviews from '../components/Reviews/Reviews.astro';
+import Final from '../components/Final/Final.astro';
+import Footer from '../components/Footer/Footer.astro';
+import OvenToast from '../components/OvenToast/OvenToast.astro';
+import CartBackdrop from '../components/CartSheet/CartBackdrop.astro';
+import FlavorPicker from '../components/FlavorPicker/FlavorPicker.astro';
+import CartSheet from '../components/CartSheet/CartSheet.astro';
+import BottomBar from '../components/BottomBar/BottomBar.astro';
+import Toast from '../components/Toast/Toast.astro';
+---
+<BaseLayout>
+<SvgSprite />
+
+<Header />
+
+<Hero />
+
+<Ribbon />
+
+<Launch />
+
+<Reels />
+
+<About />
+
+<Featured />
+
+<Menu />
+
+<Oven />
+
+<Builder />
+
+<Delivery />
+
+<Reviews />
+
+<Final />
+
+<Footer />
+
+<OvenToast />
+<CartBackdrop />
+<FlavorPicker />
+<CartSheet />
+<BottomBar />
+<Toast />
+
+<script>
+  // um único módulo de entrada (deferido, como os <script defer> do original)
+  import '../scripts/main.js';
+</script>
+</BaseLayout>

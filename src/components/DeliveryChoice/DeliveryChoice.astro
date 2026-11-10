@@ -1,0 +1,6 @@
+---
+/* Entrega × Retirada — usado no montador e na sacola. O cliente transforma os botões em cards com ícone. */
+import './DeliveryChoice.css';
+const { id, labelledby, selected } = Astro.props;
+---
+<div class="tipo" id={id} role="group" aria-labelledby={labelledby}><button type="button" class={selected === 'entrega' ? 'on' : undefined} data-v="entrega">Entrega</button><button type="button" class={selected === 'retirada' ? 'on' : undefined} data-v="retirada">Retirada</button></div>

@@ -1,0 +1,10 @@
+---
+import './Launch.css';
+/* Lançamento da semana — dados em src/data/launch.js (o cliente preenche imagem e links) */
+import { LANCAMENTO as L } from '../../data/index.js';
+---
+<section class="lanc" id="lancamento"><div class="wrap"><div class="card rv">
+  <div class="img"><img id="lancImg" data-lq style="background-image:url(data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAADQAQCdASoQAAwAA4BaJbACdABshT4GgAD+3P+nTtHmllXRf9m2ZPRgKjZ39ep/IEzH9eZtZuvMKYjzTdh+yNfX8FaK6W4AAAA=)" alt="Pizza doce de pistache com Nutella" loading="lazy" decoding="async" width="1024" height="768"><span class="novo">Novo</span></div>
+  <div class="txt"><div class="kicker">Lançamento da semana</div><h2 id="lancNome">{L.ativo ? L.nome : '—'}</h2><p class="sub" id="lancDesc">{L.ativo ? L.descricao : ''}</p><p class="pr" id="lancPreco">{L.ativo ? (L.preco == null ? 'Valor: consulte' : 'R$ ' + L.preco) : ''}</p>
+    <div class="row"><button class="btn btn-red" id="lancAdd" type="button">Quero provar</button><a class="link" id="lancWa" data-src="launch" target="_blank" rel="noopener">Perguntar no WhatsApp</a></div></div>
+</div></div></section>

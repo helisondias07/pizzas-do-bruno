@@ -1,0 +1,11 @@
+---
+import './FlavorPicker.css';
+/* Seletor de sabor (sheet com abas Salgadas/Doces e miniaturas SVG) */
+---
+<div class="sheet-bd" id="pkBd" hidden></div>
+<section class="sheet pk" id="pk" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="pkTtl" hidden>
+  <div class="sh-grab" aria-hidden="true"><span></span></div>
+  <div class="sh-h pk-h"><div class="pk-ht"><h2 id="pkTtl">Escolha o sabor</h2><p class="pk-sub" id="pkSub"><i class="pk-half" aria-hidden="true"></i><span></span></p></div><button type="button" class="sh-x" id="pkX" aria-label="Fechar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="pk-tabs" role="tablist" aria-label="Tipo de sabor"><button type="button" role="tab" id="pkTabS" data-t="s" aria-selected="true">Salgadas <small></small></button><button type="button" role="tab" id="pkTabD" data-t="d" aria-selected="false">Doces <small></small></button></div>
+  <div class="sh-body pk-body"><ul class="pk-list" id="pkList" role="listbox" aria-labelledby="pkTtl"></ul></div>
+</section>

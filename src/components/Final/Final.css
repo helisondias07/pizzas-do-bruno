@@ -1,0 +1,13 @@
+/* final/footer */
+.final{background:var(--red);color:var(--cream);text-align:center;overflow:hidden;padding:100px 0 110px}
+.final .h2,.final .h2 em{color:var(--cream)}
+.final p{opacity:.85;margin:16px auto 28px;max-width:32ch}
+.final .btn{background:var(--cream);color:var(--red)}
+.final{padding-block:calc(var(--sec-y) * 1.1)}
+.final .kicker{color:var(--cream);opacity:.8}
+.final p{margin:var(--s4) auto var(--s6)}
+@media (hover:hover){
+  .final .btn:hover{box-shadow:0 14px 30px -14px rgba(43,26,16,.55)}
+}
+
+.final .btn:focus-visible,.final a:focus-visible{outline-color:var(--cream)}

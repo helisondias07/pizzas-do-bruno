@@ -1,0 +1,6 @@
+---
+/* Um sabor do cardápio — mesmo markup do cliente (menu-markup.js) */
+import { menuItemHTML } from './menu-markup.js';
+const { item } = Astro.props;
+---
+<Fragment set:html={menuItemHTML(item)} />

@@ -1,0 +1,15 @@
+---
+import './Menu.css';
+/* Cardápio: os 8 primeiros sabores salgados saem no HTML (SEO); o cliente re-renderiza abas e "ver todos" */
+import MenuItem from './MenuItem.astro';
+import { CARDAPIO, CONFIG } from '../../data/index.js';
+const first = CARDAPIO.salgadas.slice(0, 8);
+---
+<section class="sec" id="cardapio"><div class="wrap">
+  <div class="sec-head rv"><div class="kicker">Cardápio</div><h2 class="h2">Escolha a <em>sua</em>.</h2></div>
+  <div class="tabs rv" id="tabs"><span class="pillbg"></span><button class="on" data-t="salgadas">Salgadas · {CARDAPIO.salgadas.length}</button><button data-t="doces">Doces · {CARDAPIO.doces.length}</button></div>
+  <div class="menu-meta rv"><span>Todas com 35 cm</span><span>8 fatias</span><span>Toque no sabor pra montar seu pedido</span></div>
+  <ul class="mlist" id="mlist">{first.map((p) => <MenuItem item={p} />)}</ul>
+  <div class="more"><button class="btn btn-ghost" id="moreBtn" type="button">Ver todos os sabores</button><p class="quick">Prefere falar direto? <a data-wa data-src="menu">Chamar no WhatsApp</a></p></div>
+  <div class="extras rv"><div><b>Borda recheada (Catupiry)</b><span data-preco="borda">+ R$ {CONFIG.bordaPreco}</span><small>opcional, em qualquer sabor</small></div><div><b>Coca-Cola 1,5 L</b><span data-preco="coca">R$ 11</span><small>gelada, pra acompanhar</small></div></div>
+</div></section>

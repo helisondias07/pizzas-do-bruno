@@ -1,0 +1,1085 @@
+{
+  "info": {
+    "tamanho": "35 cm",
+    "fatias": 8,
+    "whatsapp": "5522981048508",
+    "horario": "Quinta a sábado, das 18h às 23h"
+  },
+  "salgadas": [
+    {
+      "n": 1,
+      "nome": "Mussarela",
+      "preco": 45,
+      "ingredientes": "Molho de tomate, mussarela, azeitona e orégano.",
+      "itens": [
+        {
+          "id": "molho",
+          "nome": "Molho de tomate",
+          "fixo": true
+        },
+        {
+          "id": "queijo",
+          "nome": "Mussarela",
+          "fixo": true
+        },
+        {
+          "id": "azeitona",
+          "nome": "Azeitona",
+          "fixo": false
+        },
+        {
+          "id": "oregano",
+          "nome": "Orégano",
+          "fixo": false
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "nome": "Alho",
+      "preco": 50,
+      "ingredientes": "Molho de tomate, mussarela, alho, azeite, azeitona e orégano.",
+      "itens": [
+        {
+          "id": "molho",
+          "nome": "Molho de tomate",
+          "fixo": true
+        },
+        {
+          "id": "queijo",
+          "nome": "Mussarela",
+          "fixo": true
+        },
+        {
+          "id": "alho",
+          "nome": "Alho",
+          "fixo": true
+        },
+        {
+          "id": "azeite",
+          "nome": "Azeite",
+          "fixo": false
+        },
+        {
+          "id": "azeitona",
+          "nome": "Azeitona",
+          "fixo": false
+        },
+        {
+          "id": "oregano",
+          "nome": "Orégano",
+          "fixo": false
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "nome": "Calabresa com Catupiry",
+      "preco": 55,
+      "ingredientes": "Molho de tomate, mussarela, calabresa, Catupiry, azeitona e orégano.",
+      "itens": [
+        {
+          "id": "molho",
+          "nome": "Molho de tomate",
+          "fixo": true
+        },
+        {
+          "id": "queijo",
+          "nome": "Mussarela",
+          "fixo": true
+        },
+        {
+          "id": "calabresa",
+          "nome": "Calabresa",
+          "fixo": true
+        },
+        {
+          "id": "catupiry",
+          "nome": "Catupiry",
+          "fixo": false
+        },
+        {
+          "id": "azeitona",
+          "nome": "Azeitona",
+          "fixo": false
+        },
+        {
+          "id": "oregano",
+          "nome": "Orégano",
+          "fixo": false
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "nome": "Marguerita",
+      "preco": 55,
+      "ingredientes": "Molho de tomate, mussarela, tomate cereja, manjericão, azeitona e orégano.",
+      "itens": [
+        {
+          "id": "molho",
+          "nome": "Molho de tomate",
+          "fixo": true
+        },
+        {
+          "id": "queijo",
+          "nome": "Mussarela",
+          "fixo": true
+        },
+        {
+          "id": "tomate",
+          "nome": "Tomate cereja",
+          "fixo": false
+        },
+        {
+          "id": "manjericao",
+          "nome": "Manjericão",
+          "fixo": false
+        },
+        {
+          "id": "azeitona",
+          "nome": "Azeitona",
+          "fixo": false
+        },
+        {
+          "id": "oregano",
+          "nome": "Orégano",
+          "fixo": false
+        }
+      ]
+    },
+    {
+      "n": 5,
+      "nome": "Calabresa c/ Cebola Roxa",
+      "preco": 55,
+      "ingredientes": "Molho de tomate, mussarela, calabresa, cebola roxa, azeitona e orégano.",
+      "itens": [
+        {
+          "id": "molho",
+          "nome": "Molho de tomate",
+          "fixo": true
+        },
+        {
+          "id": "queijo",
+          "nome": "Mussarela",
+          "fixo": true
+        },
+        {
+          "id": "calabresa",
+          "nome": "Calabresa",
+          "fixo": true
+        },
+        {
+          "id": "cebola",
+          "nome": "Cebola roxa",
+          "fixo": false
+        },
+        {
+          "id": "azeitona",
+          "nome": "Azeitona",
+          "fixo": false
+        },
+        {
+          "id": "oregano",
+          "nome": "Orégano",
+          "fixo": false
+        }
+      ]
+    },
+    {
+      "n": 6,
+      "nome": "Calabresa c/ Barbecue",
+      "preco": 55,
+      "ingredientes": "Molho de tomate, mussarela, calabresa, molho barbecue, azeitona e orégano.",
+      "itens": [
+        {
+          "id": "molho",
+          "nome": "Molho de tomate",
+          "fixo": true
+        },
+        {
+          "id": "queijo",
+          "nome": "Mussarela",
+          "fixo": true
+        },
+        {
+          "id": "calabresa",
+          "nome": "Calabresa",
+          "fixo": true
+        },
+        {
+          "id": "barbecue",
+          "nome": "Barbecue",
+          "fixo": false
+        },
+        {
+          "id": "azeitona",
+          "nome": "Azeitona",
+          "fixo": false
+        },
+        {
+          "id": "oregano",
+          "nome": "Orégano",
+          "fixo": false
+        }
+      ]
+    },
+    {
+      "n": 7,
+      "nome": "Frango c/ Catupiry",
+      "preco": 55,
+      "ingredientes": "Molho de tomate, mussarela, frango, Catupiry, azeitona e orégano.",
+      "itens": [
+        {
+          "id": "molho",
+          "nome": "Molho de tomate",
+          "fixo": true
+        },
+        {
+          "id": "queijo",
+          "nome": "Mussarela",
+          "fixo": true
+        },
+        {
+          "id": "frango",
+          "nome": "Frango",
+          "fixo": true
+        },
+        {
+          "id": "catupiry",
+          "nome": "Catupiry",
+          "fixo": false
+        },
+        {
+          "id": "azeitona",
+          "nome": "Azeitona",
+          "fixo": false
+        },
+        {
+          "id": "oregano",
+          "nome": "Orégano",
+          "fixo": false
+        }
+      ]
+    },
+    {
+      "n": 8,
+      "nome": "Frango c/ Calabresa",
+      "preco": 55,
+      "ingredientes": "Molho de tomate, mussarela, frango, calabresa, azeitona e orégano.",
+      "itens": [
+        {
+          "id": "molho",
+          "nome": "Molho de tomate",
+          "fixo": true
+        },
+        {
+          "id": "queijo",
+          "nome": "Mussarela",
+          "fixo": true
+        },
+        {
+          "id": "frango",
+          "nome": "Frango",
+          "fixo": true
+        },
+        {
+          "id": "calabresa",
+          "nome": "Calabresa",
+          "fixo": false
+        },
+        {
+          "id": "azeitona",
+          "nome": "Azeitona",
+          "fixo": false
+        },
+        {
+          "id": "oregano",
+          "nome": "Orégano",
+          "fixo": false
+        }
+      ]
+    },
+    {
+      "n": 9,
+      "nome": "Portuguesa",
+      "preco": 55,
+      "ingredientes": "Molho de tomate, mussarela, presunto, ovos, cebola roxa, pimentão, azeitona e orégano.",
+      "itens": [
+        {
+          "id": "molho",
+          "nome": "Molho de tomate",
+          "fixo": true
+        },
+        {
+          "id": "queijo",
+          "nome": "Mussarela",
+          "fixo": true
+        },
+        {
+          "id": "presunto",
+          "nome": "Presunto",
+          "fixo": false
+        },
+        {
+          "id": "ovo",
+          "nome": "Ovos",
+          "fixo": false
+        },
+        {
+          "id": "cebola",
+          "nome": "Cebola roxa",
+          "fixo": false
+        },
+        {
+          "id": "pimentao",
+          "nome": "Pimentão",
+          "fixo": false
+        },
+        {
+          "id": "azeitona",
+          "nome": "Azeitona",
+          "fixo": false
+        },
+        {
+          "id": "oregano",
+          "nome": "Orégano",
+          "fixo": false
+        }
+      ]
+    },
+    {
+      "n": 10,
+      "nome": "Mista",
+      "preco": 55,
+      "ingredientes": "Molho de tomate, mussarela, presunto, calabresa, azeitona e orégano.",
+      "itens": [
+        {
+          "id": "molho",
+          "nome": "Molho de tomate",
+          "fixo": true
+        },
+        {
+          "id": "queijo",
+          "nome": "Mussarela",
+          "fixo": true
+        },
+        {
+          "id": "presunto",
+          "nome": "Presunto",
+          "fixo": false
+        },
+        {
+          "id": "calabresa",
+          "nome": "Calabresa",
+          "fixo": false
+        },
+        {
+          "id": "azeitona",
+          "nome": "Azeitona",
+          "fixo": false
+        },
+        {
+          "id": "oregano",
+          "nome": "Orégano",
+          "fixo": false
+        }
+      ]
+    },
+    {
+      "n": 11,
+      "nome": "Quatro Queijos",
+      "preco": 55,
+      "ingredientes": "Molho de tomate, mussarela, parmesão, gorgonzola, provolone, azeitona e orégano.",
+      "itens": [
+        {
+          "id": "molho",
+          "nome": "Molho de tomate",
+          "fixo": true
+        },
+        {
+          "id": "queijo",
+          "nome": "Mussarela",
+          "fixo": true
+        },
+        {
+          "id": "parmesao",
+          "nome": "Parmesão",
+          "fixo": false
+        },
+        {
+          "id": "gorgonzola",
+          "nome": "Gorgonzola",
+          "fixo": false
+        },
+        {
+          "id": "provolone",
+          "nome": "Provolone",
+          "fixo": false
+        },
+        {
+          "id": "azeitona",
+          "nome": "Azeitona",
+          "fixo": false
+        },
+        {
+          "id": "oregano",
+          "nome": "Orégano",
+          "fixo": false
+        }
+      ]
+    },
+    {
+      "n": 12,
+      "nome": "Bacon c/ Ovos",
+      "preco": 60,
+      "ingredientes": "Molho de tomate, mussarela, bacon, ovos, azeitona e orégano.",
+      "itens": [
+        {
+          "id": "molho",
+          "nome": "Molho de tomate",
+          "fixo": true
+        },
+        {
+          "id": "queijo",
+          "nome": "Mussarela",
+          "fixo": true
+        },
+        {
+          "id": "bacon",
+          "nome": "Bacon",
+          "fixo": true
+        },
+        {
+          "id": "ovo",
+          "nome": "Ovos",
+          "fixo": false
+        },
+        {
+          "id": "azeitona",
+          "nome": "Azeitona",
+          "fixo": false
+        },
+        {
+          "id": "oregano",
+          "nome": "Orégano",
+          "fixo": false
+        }
+      ]
+    },
+    {
+      "n": 13,
+      "nome": "Bacon c/ Catupiry",
+      "preco": 60,
+      "ingredientes": "Molho de tomate, mussarela, bacon, Catupiry, azeitona e orégano.",
+      "itens": [
+        {
+          "id": "molho",
+          "nome": "Molho de tomate",
+          "fixo": true
+        },
+        {
+          "id": "queijo",
+          "nome": "Mussarela",
+          "fixo": true
+        },
+        {
+          "id": "bacon",
+          "nome": "Bacon",
+          "fixo": true
+        },
+        {
+          "id": "catupiry",
+          "nome": "Catupiry",
+          "fixo": false
+        },
+        {
+          "id": "azeitona",
+          "nome": "Azeitona",
+          "fixo": false
+        },
+        {
+          "id": "oregano",
+          "nome": "Orégano",
+          "fixo": false
+        }
+      ]
+    },
+    {
+      "n": 14,
+      "nome": "Frango c/ Calabresa e Catupiry",
+      "preco": 60,
+      "ingredientes": "Molho de tomate, mussarela, frango, calabresa, Catupiry, azeitona e orégano.",
+      "itens": [
+        {
+          "id": "molho",
+          "nome": "Molho de tomate",
+          "fixo": true
+        },
+        {
+          "id": "queijo",
+          "nome": "Mussarela",
+          "fixo": true
+        },
+        {
+          "id": "frango",
+          "nome": "Frango",
+          "fixo": true
+        },
+        {
+          "id": "calabresa",
+          "nome": "Calabresa",
+          "fixo": false
+        },
+        {
+          "id": "catupiry",
+          "nome": "Catupiry",
+          "fixo": false
+        },
+        {
+          "id": "azeitona",
+          "nome": "Azeitona",
+          "fixo": false
+        },
+        {
+          "id": "oregano",
+          "nome": "Orégano",
+          "fixo": false
+        }
+      ]
+    },
+    {
+      "n": 15,
+      "nome": "Siciliana",
+      "preco": 60,
+      "ingredientes": "Molho de tomate, mussarela, bacon, champignon, cebola roxa, azeitona e orégano.",
+      "itens": [
+        {
+          "id": "molho",
+          "nome": "Molho de tomate",
+          "fixo": true
+        },
+        {
+          "id": "queijo",
+          "nome": "Mussarela",
+          "fixo": true
+        },
+        {
+          "id": "bacon",
+          "nome": "Bacon",
+          "fixo": false
+        },
+        {
+          "id": "champignon",
+          "nome": "Champignon",
+          "fixo": false
+        },
+        {
+          "id": "cebola",
+          "nome": "Cebola roxa",
+          "fixo": false
+        },
+        {
+          "id": "azeitona",
+          "nome": "Azeitona",
+          "fixo": false
+        },
+        {
+          "id": "oregano",
+          "nome": "Orégano",
+          "fixo": false
+        }
+      ]
+    },
+    {
+      "n": 16,
+      "nome": "Calabresa c/ Bacon e Catupiry",
+      "preco": 65,
+      "ingredientes": "Molho de tomate, mussarela, calabresa, bacon, Catupiry, azeitona e orégano.",
+      "itens": [
+        {
+          "id": "molho",
+          "nome": "Molho de tomate",
+          "fixo": true
+        },
+        {
+          "id": "queijo",
+          "nome": "Mussarela",
+          "fixo": true
+        },
+        {
+          "id": "calabresa",
+          "nome": "Calabresa",
+          "fixo": true
+        },
+        {
+          "id": "bacon",
+          "nome": "Bacon",
+          "fixo": false
+        },
+        {
+          "id": "catupiry",
+          "nome": "Catupiry",
+          "fixo": false
+        },
+        {
+          "id": "azeitona",
+          "nome": "Azeitona",
+          "fixo": false
+        },
+        {
+          "id": "oregano",
+          "nome": "Orégano",
+          "fixo": false
+        }
+      ]
+    },
+    {
+      "n": 17,
+      "nome": "Lombo Canadense c/ Abacaxi",
+      "preco": 65,
+      "ingredientes": "Molho de tomate, mussarela, lombo canadense, abacaxi, azeitona e orégano.",
+      "itens": [
+        {
+          "id": "molho",
+          "nome": "Molho de tomate",
+          "fixo": true
+        },
+        {
+          "id": "queijo",
+          "nome": "Mussarela",
+          "fixo": true
+        },
+        {
+          "id": "lombo",
+          "nome": "Lombo canadense",
+          "fixo": true
+        },
+        {
+          "id": "abacaxi",
+          "nome": "Abacaxi",
+          "fixo": false
+        },
+        {
+          "id": "azeitona",
+          "nome": "Azeitona",
+          "fixo": false
+        },
+        {
+          "id": "oregano",
+          "nome": "Orégano",
+          "fixo": false
+        }
+      ]
+    },
+    {
+      "n": 18,
+      "nome": "Lombo Canadense c/ Geleia de Pimenta",
+      "preco": 65,
+      "ingredientes": "Molho de tomate, mussarela, lombo canadense, geleia de pimenta, azeitona e orégano.",
+      "itens": [
+        {
+          "id": "molho",
+          "nome": "Molho de tomate",
+          "fixo": true
+        },
+        {
+          "id": "queijo",
+          "nome": "Mussarela",
+          "fixo": true
+        },
+        {
+          "id": "lombo",
+          "nome": "Lombo canadense",
+          "fixo": true
+        },
+        {
+          "id": "geleia",
+          "nome": "Geleia de pimenta",
+          "fixo": false
+        },
+        {
+          "id": "azeitona",
+          "nome": "Azeitona",
+          "fixo": false
+        },
+        {
+          "id": "oregano",
+          "nome": "Orégano",
+          "fixo": false
+        }
+      ]
+    },
+    {
+      "n": 19,
+      "nome": "Lombo Canadense c/ Catupiry",
+      "preco": 65,
+      "ingredientes": "Molho de tomate, mussarela, lombo canadense, Catupiry, azeitona e orégano.",
+      "itens": [
+        {
+          "id": "molho",
+          "nome": "Molho de tomate",
+          "fixo": true
+        },
+        {
+          "id": "queijo",
+          "nome": "Mussarela",
+          "fixo": true
+        },
+        {
+          "id": "lombo",
+          "nome": "Lombo canadense",
+          "fixo": true
+        },
+        {
+          "id": "catupiry",
+          "nome": "Catupiry",
+          "fixo": false
+        },
+        {
+          "id": "azeitona",
+          "nome": "Azeitona",
+          "fixo": false
+        },
+        {
+          "id": "oregano",
+          "nome": "Orégano",
+          "fixo": false
+        }
+      ]
+    },
+    {
+      "n": 20,
+      "nome": "Jardineira",
+      "preco": 65,
+      "ingredientes": "Molho de tomate, mussarela, tomate cereja, Catupiry, manjericão, azeitona e orégano.",
+      "itens": [
+        {
+          "id": "molho",
+          "nome": "Molho de tomate",
+          "fixo": true
+        },
+        {
+          "id": "queijo",
+          "nome": "Mussarela",
+          "fixo": true
+        },
+        {
+          "id": "tomate",
+          "nome": "Tomate cereja",
+          "fixo": false
+        },
+        {
+          "id": "catupiry",
+          "nome": "Catupiry",
+          "fixo": false
+        },
+        {
+          "id": "manjericao",
+          "nome": "Manjericão",
+          "fixo": false
+        },
+        {
+          "id": "azeitona",
+          "nome": "Azeitona",
+          "fixo": false
+        },
+        {
+          "id": "oregano",
+          "nome": "Orégano",
+          "fixo": false
+        }
+      ]
+    },
+    {
+      "n": 21,
+      "nome": "Caipira",
+      "preco": 55,
+      "ingredientes": "Molho de tomate, mussarela, presunto, ovos, cebola roxa, pimentão, azeitona e orégano.",
+      "itens": [
+        {
+          "id": "molho",
+          "nome": "Molho de tomate",
+          "fixo": true
+        },
+        {
+          "id": "queijo",
+          "nome": "Mussarela",
+          "fixo": true
+        },
+        {
+          "id": "presunto",
+          "nome": "Presunto",
+          "fixo": false
+        },
+        {
+          "id": "ovo",
+          "nome": "Ovos",
+          "fixo": false
+        },
+        {
+          "id": "cebola",
+          "nome": "Cebola roxa",
+          "fixo": false
+        },
+        {
+          "id": "pimentao",
+          "nome": "Pimentão",
+          "fixo": false
+        },
+        {
+          "id": "azeitona",
+          "nome": "Azeitona",
+          "fixo": false
+        },
+        {
+          "id": "oregano",
+          "nome": "Orégano",
+          "fixo": false
+        }
+      ]
+    },
+    {
+      "n": 22,
+      "nome": "Carijó",
+      "preco": 55,
+      "ingredientes": "Molho de tomate, mussarela, frango, milho, Catupiry, bacon, azeitona e orégano.",
+      "itens": [
+        {
+          "id": "molho",
+          "nome": "Molho de tomate",
+          "fixo": true
+        },
+        {
+          "id": "queijo",
+          "nome": "Mussarela",
+          "fixo": true
+        },
+        {
+          "id": "frango",
+          "nome": "Frango",
+          "fixo": false
+        },
+        {
+          "id": "milho",
+          "nome": "Milho",
+          "fixo": false
+        },
+        {
+          "id": "catupiry",
+          "nome": "Catupiry",
+          "fixo": false
+        },
+        {
+          "id": "bacon",
+          "nome": "Bacon",
+          "fixo": false
+        },
+        {
+          "id": "azeitona",
+          "nome": "Azeitona",
+          "fixo": false
+        },
+        {
+          "id": "oregano",
+          "nome": "Orégano",
+          "fixo": false
+        }
+      ]
+    }
+  ],
+  "doces": [
+    {
+      "n": 23,
+      "nome": "Prestígio",
+      "preco": 48,
+      "ingredientes": "Massa artesanal, chocolate e coco ralado.",
+      "itens": [
+        {
+          "id": "choco",
+          "nome": "Chocolate",
+          "fixo": true
+        },
+        {
+          "id": "coco",
+          "nome": "Coco ralado",
+          "fixo": true
+        }
+      ]
+    },
+    {
+      "n": 24,
+      "nome": "Chocolate c/ Confetes",
+      "preco": 45,
+      "ingredientes": "Massa artesanal, chocolate e confetes.",
+      "itens": [
+        {
+          "id": "choco",
+          "nome": "Chocolate",
+          "fixo": true
+        },
+        {
+          "id": "confete",
+          "nome": "Confetes",
+          "fixo": true
+        }
+      ]
+    },
+    {
+      "n": 25,
+      "nome": "Chocolate c/ Granulado",
+      "preco": 45,
+      "ingredientes": "Massa artesanal, chocolate e granulado.",
+      "itens": [
+        {
+          "id": "choco",
+          "nome": "Chocolate",
+          "fixo": true
+        },
+        {
+          "id": "granulado",
+          "nome": "Granulado",
+          "fixo": true
+        }
+      ]
+    },
+    {
+      "n": 26,
+      "nome": "Chocolate c/ Banana",
+      "preco": 50,
+      "ingredientes": "Massa artesanal, chocolate e banana.",
+      "itens": [
+        {
+          "id": "choco",
+          "nome": "Chocolate",
+          "fixo": true
+        },
+        {
+          "id": "banana",
+          "nome": "Banana",
+          "fixo": true
+        }
+      ]
+    },
+    {
+      "n": 27,
+      "nome": "Banana Nevada",
+      "preco": 55,
+      "ingredientes": "Massa artesanal, chocolate branco caramelizado e banana.",
+      "itens": [
+        {
+          "id": "chocobranco",
+          "nome": "Chocolate branco caramelizado",
+          "fixo": true
+        },
+        {
+          "id": "banana",
+          "nome": "Banana",
+          "fixo": true
+        }
+      ]
+    },
+    {
+      "n": 28,
+      "nome": "Chocolate c/ Morango",
+      "preco": 55,
+      "ingredientes": "Massa artesanal, chocolate e morango.",
+      "itens": [
+        {
+          "id": "choco",
+          "nome": "Chocolate",
+          "fixo": true
+        },
+        {
+          "id": "morango",
+          "nome": "Morango",
+          "fixo": true
+        }
+      ]
+    },
+    {
+      "n": 29,
+      "nome": "Romeu e Julieta",
+      "preco": 48,
+      "ingredientes": "Massa artesanal, mussarela e goiabada.",
+      "itens": [
+        {
+          "id": "queijo",
+          "nome": "Mussarela",
+          "fixo": true
+        },
+        {
+          "id": "goiabada",
+          "nome": "Goiabada",
+          "fixo": true
+        }
+      ]
+    },
+    {
+      "n": 30,
+      "nome": "Nutella c/ Banana",
+      "preco": 60,
+      "ingredientes": "Massa artesanal, Nutella e banana.",
+      "itens": [
+        {
+          "id": "nutella",
+          "nome": "Nutella",
+          "fixo": true
+        },
+        {
+          "id": "banana",
+          "nome": "Banana",
+          "fixo": true
+        }
+      ]
+    },
+    {
+      "n": 31,
+      "nome": "Nutella c/ Morango",
+      "preco": 65,
+      "ingredientes": "Massa artesanal, Nutella e morango.",
+      "itens": [
+        {
+          "id": "nutella",
+          "nome": "Nutella",
+          "fixo": true
+        },
+        {
+          "id": "morango",
+          "nome": "Morango",
+          "fixo": true
+        }
+      ]
+    },
+    {
+      "n": 32,
+      "nome": "Ferrero Rocher",
+      "preco": 65,
+      "ingredientes": "Massa artesanal, Nutella e amendoim.",
+      "itens": [
+        {
+          "id": "nutella",
+          "nome": "Nutella",
+          "fixo": true
+        },
+        {
+          "id": "amendoim",
+          "nome": "Amendoim",
+          "fixo": true
+        }
+      ]
+    }
+  ],
+  "adicionais": [
+    {
+      "nome": "Borda recheada Catupiry",
+      "preco": 10
+    }
+  ],
+  "bebidas": [
+    {
+      "nome": "Coca-Cola 1,5 L",
+      "preco": 11
+    }
+  ]
+}

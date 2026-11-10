@@ -1,0 +1,16 @@
+.snd{position:absolute;right:0;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:1px solid rgba(90,58,36,.16);background:rgba(251,241,228,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:var(--brown);display:grid;place-items:center;cursor:pointer;padding:0;transition:background var(--d2) var(--ease),color var(--d2) var(--ease),border-color var(--d2) var(--ease)}
+.snd svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.snd .sp{fill:currentColor;fill-opacity:.12}
+.snd .x{display:none}
+.snd[data-m=off] .w1,.snd[data-m=off] .w2{display:none}
+.snd[data-m=off] .x{display:inline}
+.snd[data-m=off]{color:var(--muted)}
+.snd[data-m=sfx] .w2{opacity:.35}
+.snd .fl{position:absolute;top:6px;right:8px;width:8px;height:11px;fill:var(--red);stroke:none;opacity:0;transition:opacity var(--d2) var(--ease)}
+.snd[data-m=all] .fl{opacity:1}
+.is-closed .snd[data-m=all] .fl{fill:var(--gold);opacity:.6}
+@media (hover:hover){
+  .snd:hover{border-color:rgba(215,40,47,.35);color:var(--red)}
+}
+
+.snd:focus-visible{outline:2px solid var(--red);outline-offset:2px}

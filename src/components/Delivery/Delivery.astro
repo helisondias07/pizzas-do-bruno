@@ -1,0 +1,10 @@
+---
+import './Delivery.css';
+/* Área de entrega: consulta de bairro (dados em src/data/bairros.js) */
+---
+<section class="sec area" id="entrega"><div class="wrap">
+  <div class="sec-head rv"><div class="kicker">Área de entrega</div><h2 class="h2">Entrega no <em>seu</em> bairro?</h2></div>
+  <form id="areaForm" class="rv" autocomplete="off"><input type="search" id="bairroIn" list="bairroList" placeholder="Digite seu bairro" aria-label="Seu bairro"><datalist id="bairroList"></datalist><button class="btn btn-ink" type="submit">Verificar</button></form>
+  <div class="area-out" id="areaOut" aria-live="polite"></div>
+  <p class="tiny area-note"><span class="ph-note">Exemplo</span> bairros e taxas ilustrativos, a confirmar.</p>
+</div></section>
