@@ -82,7 +82,7 @@ export const GRADS =
 /* ---------- frango desfiado: tufos de fiapos alongados, dourado/bege, com fibras ---------- */
 function frango(seed) {
   var r = rng(seed), out = '', sh = '', body = '', fib = '', base = r() * Math.PI, k = 8 + (r() * 3 | 0);
-  var cols = ['#E2B477', '#D29A58', '#EBC791', '#C98C4C', '#DDAA6A', '#F0D3A2'];
+  var cols = ['#E8B86A', '#D4A050', '#F0C888', '#C88840', '#E0B060', '#F6D8A4'];
   for (var i = 0; i < k; i++) {
     var a = base + (r() - .5) * 1.5, rr = Math.sqrt(r()) * 7.4, th = r() * Math.PI * 2;
     var S = strand(r, Math.cos(th) * rr, Math.sin(th) * rr * .8, a, 11 + r() * 9, 2.5 + r() * 1.8), col = cols[i % cols.length];
@@ -194,16 +194,21 @@ function azeitona(v) {
     E(-2.8, -2.4, 2.2, .9, { fill: '#fff', opacity: '.5' }, rot - 10) + Ci(-1.4, -3.1, .5, { fill: '#fff', opacity: '.85' });
 }
 
-/* ---------- pimentão verde: anel com três gomos ou tirinha ---------- */
+/* ---------- pimentão verde: gomo cheio (polpa clara + pele) ou tira curva ---------- */
 function pimentao(seed, strip) {
-  var r = rng(seed), ph = r() * 6, p = [], q = [], a0 = strip ? r() * 6 : 0, span = strip ? 2.4 : 6.283, M = strip ? 16 : 30;
-  for (var i = 0; i <= M; i++) { var a = a0 + span * i / M, rr = 7.8 + 1.5 * Math.cos(3 * a + ph) + (r() - .5) * .3; p.push([Math.cos(a) * rr, Math.sin(a) * rr]); q.push([Math.cos(a) * (rr - 1.2), Math.sin(a) * (rr - 1.2)]); }
-  var d = strip ? open(p) : closed(p.slice(0, -1)), di = strip ? open(q) : closed(q.slice(0, -1));
-  return P(d, { fill: 'none', stroke: '#10200A', 'stroke-width': '3.4', 'stroke-linecap': 'round', opacity: '.2', transform: 'translate(.7 1.2)' }) +
-    P(d, { fill: 'none', stroke: '#24501A', 'stroke-width': '3.3', 'stroke-linecap': 'round' }) +
-    P(d, { fill: 'none', stroke: '#4F9234', 'stroke-width': '2.1', 'stroke-linecap': 'round' }) +
-    P(di, { fill: 'none', stroke: '#C9E6A6', 'stroke-width': '.6', 'stroke-linecap': 'round', opacity: '.9' }) +
-    P(d, { fill: 'none', stroke: '#A6D77E', 'stroke-width': '.5', 'stroke-linecap': 'round', opacity: '.55', transform: 'translate(-.4 -.5)' });
+  var r = rng(seed), a0 = (r() - .5) * .4, span = strip ? 1.9 : 2.35, p = [], inn = [], M = 14;
+  for (var i = 0; i <= M; i++) {
+    var t = i / M, a = a0 + span * (t - .5), wob = 1 + Math.sin(t * Math.PI) * .18, rr = (strip ? 9.4 : 10.2) * wob;
+    p.push([Math.cos(a) * rr, Math.sin(a) * rr]);
+    inn.push([Math.cos(a) * (rr - (strip ? 3.6 : 4.6)), Math.sin(a) * (rr - (strip ? 3.6 : 4.6))]);
+  }
+  var d = closed(p.concat(inn.slice().reverse()));
+  return shadow(d, .8, 1.3, '#10200A', '.22') +
+    P(d, { fill: '#3F8A28', stroke: '#1E4E14', 'stroke-width': '.7', 'stroke-linejoin': 'round' }) +
+    P(closed(inn.concat(p.slice(4, 10).reverse())), { fill: '#C5E89A', opacity: '.9' }) +
+    P(open(inn.slice(2, -2)), { fill: 'none', stroke: '#E8F6C8', 'stroke-width': '.8', 'stroke-linecap': 'round', opacity: '.8' }) +
+    E(Math.cos(a0) * 6.2, Math.sin(a0) * 6.2, 1.1, .55, { fill: '#F4E7A8', opacity: '.7' }, a0 * 57) +
+    P(open(p.slice(1, -1)), { fill: 'none', stroke: '#8FCB5A', 'stroke-width': '1.1', 'stroke-linecap': 'round', opacity: '.7', transform: 'translate(-.3 -.4)' });
 }
 
 /* ---------- milho: grão em forma de dente, coroa clara ---------- */
@@ -340,10 +345,25 @@ function goiabada() {
     '<rect x="-3.4" y="-3.6" width="4" height="1.6" rx=".8" fill="#FFB0BC" opacity=".65"/>' + Ci(2.6, 2.4, .5, { fill: '#F07D8E', opacity: '.4' });
 }
 
+/* ---------- ervilha: grão verde brilhante ---------- */
+function ervilha(v) {
+  return Ci(.5, .8, 4.4, { fill: '#1A2E0C', opacity: '.28' }) + Ci(0, 0, 4.3, { fill: v ? '#6DB43A' : '#5AA330' }) +
+    E(-1.2, -1.4, 1.7, 1, { fill: '#D4F08A', opacity: '.85' }, -30) + Ci(1.5, 1.2, .7, { fill: '#3E7A1C', opacity: '.45' }) +
+    P('M-1.6-3.2Q0-4.2 1.6-3', { fill: 'none', stroke: '#8FCB5A', 'stroke-width': '.7', 'stroke-linecap': 'round' });
+}
+/* ---------- palmito: rodela pálida com anéis ---------- */
+function palmito(v) {
+  var d = v ? blob(0, 0, 8.6, 7.4, 9, .12, rng(3)) : blob(0, 0, 8.2, 8, 10, .1, rng(8));
+  return shadow(d, .7, 1.2, '#6A5A30', '.2') + P(d, { fill: '#F3E6C4', stroke: '#D2BE8A', 'stroke-width': '.7' }) +
+    Ci(0, 0, 4.6, { fill: 'none', stroke: '#E8D7A8', 'stroke-width': '1.2' }) +
+    Ci(0, 0, 2.4, { fill: '#FFF8E8', stroke: '#E0CC96', 'stroke-width': '.6' }) +
+    E(-2.4, -2.6, 2, .8, { fill: '#fff', opacity: '.65' }, -30);
+}
+
 /* ---------- confete, granulado, amendoim, pistache, raspas, caramelo, azeite ---------- */
 var SIMPLE = {
   confete: '<circle cx=".5" cy=".8" r="3.9" fill="#000" opacity=".22"/><circle r="3.9"/><circle r="3.9" fill="none" stroke="#000" stroke-width=".6" opacity=".18"/><ellipse cx="-1.2" cy="-1.4" rx="1.6" ry=".9" fill="#fff" opacity=".55" transform="rotate(-30 -1.2 -1.4)"/>',
-  granulado: '<rect x="-3.3" y="-.5" width="7" height="2.2" rx="1.1" fill="#1A0C05" opacity=".35"/><rect x="-3.5" y="-1.1" width="7" height="2.2" rx="1.1" fill="#3B1D10"/><rect x="-2.6" y="-.95" width="3.8" height=".75" rx=".37" fill="#D9A77F"/>',
+  granulado: '<rect x="-3.3" y="-.5" width="7.4" height="2.4" rx="1.2" fill="#1A0C05" opacity=".3"/><rect x="-3.6" y="-1.2" width="7.4" height="2.4" rx="1.2" fill="#4A2412"/><rect x="-2.8" y="-1" width="4.2" height=".8" rx=".4" fill="#C98958"/><rect x="1.2" y="-.2" width="1.6" height=".5" rx=".2" fill="#2A1208" opacity=".5"/>',
   amendoim: '<ellipse cx=".5" cy=".9" rx="4.8" ry="3.4" fill="#3A1E0A" opacity=".3"/><path d="M-4.4.2c0-2.4 2-3.4 4.4-3.4s4.4 1 4.4 3.2-2 3.2-4.4 3.2S-4.4 2.6-4.4.2z" fill="#E0AE68"/><path d="M-4.4.2c0 2.4 2 3 4.4 3s4.4-1 4.4-3" fill="#B0743A"/><path d="M-3.8-1.4c.6-1 1.6-1.6 2.6-1.6" stroke="#8A4A22" stroke-width=".9" stroke-linecap="round" fill="none" opacity=".7"/><ellipse cx="-.4" cy="-1" rx="1.9" ry=".8" fill="#F8DDAE"/><path d="M3.2-.8l.8.8" stroke="#8A5A2A" stroke-width=".6" stroke-linecap="round"/>',
   pistache: '<ellipse cx=".6" cy="1" rx="4.6" ry="3.2" fill="#2E3A12" opacity=".25"/><path d="M-4.2-1.4l3.8-2.6 4.2 1.4.6 3.4-3.8 2.4-4.4-1z" fill="#8DB84C"/><path d="M-4.2-1.4l3.8-2.6 4.2 1.4" stroke="#7A4652" stroke-width="1.2" fill="none" stroke-linejoin="round" opacity=".85"/><path d="M-1.6-.4l2.8-.7" stroke="#DCEEAA" stroke-width="1" stroke-linecap="round"/><circle cx="1.6" cy="1.4" r=".7" fill="#B8D670"/>',
   raspa: '<path d="M-5.6 1.6c1.6-4 9.8-4.6 11.4-.6-1.8 2.8-9.4 3.4-11.4.6z" fill="#6E4E26" opacity=".22" transform="translate(.8 1.4)"/><path d="M-5.6 1.2c1.6-4 9.8-4.6 11.4-.6-1.8 2.8-9.4 3.4-11.4.6z" fill="#FFFDF7" stroke="#DCC29A" stroke-width=".7"/><path d="M-3.8-.6c1.8-1.6 5.6-1.8 7.6-.4" stroke="#E6D2B0" stroke-width=".8" fill="none" stroke-linecap="round"/><path d="M-3.4-1.6c1.4-.9 3.6-1 5-.4" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round"/>',
@@ -376,5 +396,7 @@ export const SPR = Object.assign({
   banana: banana(),
   morango: morango(),
   coco: [coco(2), coco(7), coco(13)],
-  goiabada: goiabada()
+  goiabada: goiabada(),
+  ervilha: [ervilha(0), ervilha(1)],
+  palmito: [palmito(0), palmito(1)]
 }, SIMPLE);

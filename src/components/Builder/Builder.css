@@ -133,10 +133,62 @@
 @keyframes nudge{0%,100%{box-shadow:0 0 0 0 rgba(43,26,16,.0)}40%{box-shadow:0 0 0 8px rgba(43,26,16,.12);transform:translateY(-1px)}}
 @keyframes hintPulse{50%{transform:scale(1.03)}}
 
-/* ---------- animação: pizza cortada entra na caixa ---------- */
-.pack-stage{position:fixed;inset:0;z-index:400;pointer-events:none;display:grid;place-items:center;padding:16px;background:rgba(43,26,16,.18)}
-.pack-stage .pack-card{position:relative;width:min(420px,92vw);aspect-ratio:400/360}
-.pack-stage svg.pack-svg{display:block;width:100%;height:100%;overflow:visible;filter:drop-shadow(0 18px 28px rgba(60,30,10,.28))}
-@media (prefers-reduced-motion:reduce){
-  .pack-stage{display:none}
+/* ---------- caixa aberta no montador + tampa 3D ---------- */
+/* Pizza encolhe e desce para caber na caixa; a tampa aberta recua em 3D no espaço acima. */
+.viz-wrap.has-box #pizzaViz.in-box{transform:translateY(12%) scale(.64);transform-origin:50% 50%}
+.box-scene{position:absolute;inset:0;pointer-events:none;visibility:hidden}
+.box-scene.on{visibility:visible}
+.box-back,.box-front{
+  position:absolute;left:15%;right:15%;top:30%;bottom:2%;
 }
+.box-back{z-index:1}
+.box-front{z-index:3;overflow:visible}
+.box-base{position:absolute;inset:0;opacity:0;filter:drop-shadow(0 14px 18px rgba(60,30,10,.28))}
+.box-base.in{opacity:1}
+.box-base-svg{display:block;width:100%;height:100%;overflow:visible}
+.box-lid-hinge{
+  position:absolute;left:0;right:0;top:0;height:100%;
+  transform:perspective(620px);
+  transform-origin:50% 0%;
+  transform-style:preserve-3d;
+}
+.box-lid{
+  position:absolute;inset:0;
+  transform-origin:50% 0%;
+  transform:rotateX(-118deg);
+  transform-style:preserve-3d;
+}
+.box-lid.closed{transform:rotateX(0deg)}
+.box-lid-face{
+  position:absolute;inset:0;
+  transform-style:preserve-3d;
+}
+.box-lid-out{transform:translateZ(0.5px);visibility:hidden}
+.box-lid-in{transform:rotateX(180deg) translateZ(0.5px);visibility:visible}
+.box-lid.show-out .box-lid-out,.box-lid.closed.show-out .box-lid-out{visibility:visible}
+.box-lid.show-out .box-lid-in,.box-lid.closed.show-out .box-lid-in{visibility:hidden}
+.box-lid-svg{display:block;width:100%;height:100%;overflow:visible}
+.box-steam{position:absolute;left:18%;right:18%;top:-8%;height:52%;z-index:4;opacity:0;pointer-events:none}
+.box-steam.on{opacity:1}
+.box-steam span{
+  position:absolute;bottom:8%;width:20%;height:80%;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(255,255,255,.82),rgba(255,248,235,.35) 42%,transparent 72%);
+  filter:blur(5px);animation:boxSteam 2.5s ease-out infinite;opacity:0
+}
+.box-steam span:nth-child(1){left:8%;animation-delay:0s}
+.box-steam span:nth-child(2){left:30%;animation-delay:.45s;width:26%}
+.box-steam span:nth-child(3){left:52%;animation-delay:1s;width:22%}
+.box-steam span:nth-child(4){left:72%;animation-delay:1.55s;width:18%}
+@keyframes boxSteam{
+  0%{transform:translateY(30%) scaleX(.65) scaleY(.7);opacity:0}
+  18%{opacity:.75}
+  100%{transform:translateY(-90%) scaleX(1.25) scaleY(1.15);opacity:0}
+}
+#pizzaViz{position:relative;z-index:2;transform-origin:50% 50%;will-change:transform}
+#pizzaViz svg{position:relative;z-index:2}
+@media (prefers-reduced-motion:reduce){
+  .box-steam span{animation:none;opacity:.45;transform:translateY(-20px)}
+  .box-lid{transition:none}
+  .viz-wrap.has-box #pizzaViz.in-box{transition:none}
+}
+html.shot .viz-hint,html.shot .toast{display:none!important}
