@@ -79,8 +79,8 @@ function boxLidMarkup() {
         '<g transform="translate(-200 -256)">' +
           '<path d="M78 36 L322 36 L330 256 L70 256 Z" fill="#FBF7F0" stroke="#E5D9C6" stroke-width="1.2"/>' +
           '<path d="M78 36 L322 36 L318 50 L82 50 Z" fill="#C49A62"/>' +
-          '<g transform="translate(200 128) scale(0.108) translate(-540 -640)" fill="#C41E2A">' +
-            '<use href="#logo" width="1080" height="1368"/>' +
+          '<g transform="translate(200 128) scale(0.108) translate(-540 -640)" fill="#C41E2A" style="color:#C41E2A">' +
+            '<use href="#logo" width="1080" height="1368" fill="#C41E2A"/>' +
           '</g>' +
           '<text x="200" y="222" text-anchor="middle" fill="#C41E2A" font-family="ui-serif, Georgia, serif" font-size="9" font-weight="600">@pizzasdobruno  ·  (22) 98104-8508</text>' +
         '</g>' +
