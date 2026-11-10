@@ -98,8 +98,10 @@ function layoutPts(id,sl,n,tr,placed,r){
     for(var t=0;t<tries.length;t++){
       var cand=ringAt(sl,tr,RCH*tries[t][0],tries[t][1],[]);
       var ok=cand.filter(function(p){return farEnough(p[0],p[1],tr,placed)});
-      if(ok.length>=Math.min(cand.length,angs.length-1)||t===tries.length-1){
+      if(ok.length>=Math.min(cand.length,angs.length-1)){
         ok.forEach(function(p){placed.push(p)});return ok}
+      if(t===tries.length-1){
+        (ok.length?ok:cand).forEach(function(p){placed.push(p)});return ok.length?ok:cand}
     }
     return out}
   // rings: 1, 2 ou 3 anéis conforme a quantidade (sempre múltiplo do nº de fatias)
