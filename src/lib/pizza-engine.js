@@ -7,6 +7,7 @@
    jitter para miúdos (orégano, granulado, milho...). Semente determinística por sabor+metade.
    Sombras das peças são desenhadas no próprio sprite (sem filtros → sem repaint caro).
    Borda recheada: a borda "abre" (sulco), o catupiry é aplicado em volta e a massa "fecha". */
+import { GRADS as SPRITE_GRADS, SPR as SPRITES } from './pizza-engine-sprites.js';
 (function(){
 'use strict';
 var NS='http://www.w3.org/2000/svg',C=200,RIN=158,RCH=147; // RIN = área do molho; RCH = raio do queijo
@@ -17,67 +18,24 @@ function hash(s){var h=2166136261;for(var i=0;i<s.length;i++){h^=s.charCodeAt(i)
 function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;var t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
 function anim(node,kf,o){if(reduce||!node.animate){var l=kf[kf.length-1];for(var k in l)if(k!=='offset'&&k!=='easing')node.style[k]=l[k];return{finished:Promise.resolve(),cancel:function(){}}}return node.animate(kf,Object.assign({fill:'both'},o))}
 var EASE='cubic-bezier(.45,0,.2,1)',SOFT='cubic-bezier(.22,1,.36,1)',DROP='cubic-bezier(.33,.66,.36,1)';
-var GRADS=
-'<radialGradient id="gCal" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#CF6446"/><stop offset=".75" stop-color="#A63D27"/><stop offset="1" stop-color="#7C2A19"/></radialGradient>'+
-'<radialGradient id="gTom" cx="38%" cy="32%" r="70%"><stop offset="0" stop-color="#FF7A5E"/><stop offset=".6" stop-color="#E0352E"/><stop offset="1" stop-color="#A9181F"/></radialGradient>'+
-'<radialGradient id="gOli" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#5B4D42"/><stop offset="1" stop-color="#1B1612"/></radialGradient>'+
-'<radialGradient id="gEgg" cx="40%" cy="35%" r="65%"><stop offset="0" stop-color="#FFD25A"/><stop offset="1" stop-color="#E89A1C"/></radialGradient>'+
-'<radialGradient id="gLom" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#F8C4BE"/><stop offset=".8" stop-color="#E59B95"/><stop offset="1" stop-color="#C46A63"/></radialGradient>'+
-'<radialGradient id="gBan" cx="45%" cy="40%" r="65%"><stop offset="0" stop-color="#FFF4C8"/><stop offset=".8" stop-color="#F6E0A0"/><stop offset="1" stop-color="#E0B865"/></radialGradient>'+
-'<radialGradient id="gMor" cx="40%" cy="30%" r="75%"><stop offset="0" stop-color="#FF6B6B"/><stop offset="1" stop-color="#B3121F"/></radialGradient>'+
-'<radialGradient id="gCat" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#F1E4CC"/></radialGradient>'+
-'<linearGradient id="gBac" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C2654A"/><stop offset="1" stop-color="#8E3B27"/></linearGradient>'+
-'<radialGradient id="gFra" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#EDC28A"/><stop offset="1" stop-color="#C98B4A"/></radialGradient>'+
-'<radialGradient id="gGoi" cx="35%" cy="30%" r="80%"><stop offset="0" stop-color="#C9364A"/><stop offset="1" stop-color="#7E1322"/></radialGradient>'+
-'<radialGradient id="gWch" gradientUnits="userSpaceOnUse" cx="186" cy="180" r="168"><stop offset="0" stop-color="#FFFDF6"/><stop offset=".55" stop-color="#FDF3DF"/><stop offset=".86" stop-color="#F6E3C0"/><stop offset="1" stop-color="#E9CB98"/></radialGradient>'+
-'<radialGradient id="gLeaf" cx="40%" cy="30%" r="80%"><stop offset="0" stop-color="#5E9B45"/><stop offset="1" stop-color="#2F5E22"/></radialGradient>';
+var GRADS=SPRITE_GRADS,SPR=SPRITES;
+/* nº de variações de desenho por ingrediente (frango em tufos diferentes etc.) */
+var VAR={};Object.keys(SPR).forEach(function(k){VAR[k]=Array.isArray(SPR[k])?SPR[k].length:1});
 
-var SPR={
-calabresa:'<circle cx=".9" cy="1.6" r="10.3" fill="#3A1206" opacity=".24"/><circle r="10.2" fill="url(#gCal)"/><circle r="9.3" fill="none" stroke="#6E2416" stroke-width="1.1" opacity=".8"/><circle cx="-3" cy="-2.2" r="1.7" fill="#F1C3AE" opacity=".9"/><circle cx="3.4" cy="1.8" r="1.3" fill="#F1C3AE" opacity=".85"/><circle cx="1" cy="-4.8" r="1" fill="#F1C3AE" opacity=".8"/><circle cx="-2.6" cy="4" r="1.2" fill="#F1C3AE" opacity=".85"/><circle cx="4" cy="-3" r=".8" fill="#F1C3AE" opacity=".7"/><path d="M-6.5-5.5A8.5 8.5 0 0 1 2-8.6" stroke="#fff" stroke-width="1.2" stroke-linecap="round" opacity=".28" fill="none"/>',
-bacon:'<ellipse cx=".8" cy="1.6" rx="12.6" ry="4.4" fill="#3A1206" opacity=".2"/><path d="M-12.5-3.2q3.1-4 6.2 0t6.2 0 6.2 0 6.2 0v6.4q-3.1 4-6.2 0t-6.2 0-6.2 0-6.2 0z" fill="url(#gBac)"/><path d="M-12.5-.2q3.1-4 6.2 0t6.2 0 6.2 0 6.2 0" stroke="#F6D2BE" stroke-width="1.8" fill="none" opacity=".95"/><path d="M-12.5-2.4q3.1-4 6.2 0" stroke="#fff" stroke-width=".8" fill="none" opacity=".3"/>',
-frango:'<ellipse cx=".8" cy="1.4" rx="9.4" ry="5.2" fill="#6A4010" opacity=".2"/><path d="M-8.5-3.2c3-4.4 9.6-4.6 12.6-1.2 3.2 3.4-.8 6.6-5.4 6.6-4.4.8-9.4-1.2-7.2-5.4z" fill="url(#gFra)"/><path d="M-5.5-1.2l7 .8M-3.4 1.8h6" stroke="#F7DDB6" stroke-width="1.1" stroke-linecap="round" opacity=".9"/>',
-catupiry:'<ellipse cx=".8" cy="1.6" rx="9" ry="8.4" fill="#8A6A40" opacity=".18"/><path d="M0-9.4c6.4 0 9.4 4.2 7.4 8.2-1.2 3-5.2 2.2-6.2 4.4-1.2 3.2-7.4 3.2-8.4-1-2-4.2-1-11.6 7.2-11.6z" fill="url(#gCat)"/><path d="M-3.4-5.4c2-1.2 4.4-1.2 5.6 0" stroke="#fff" stroke-width="1.6" stroke-linecap="round" fill="none"/><path d="M0-9.4c6.4 0 9.4 4.2 7.4 8.2" stroke="#E2CFAF" stroke-width=".8" fill="none" opacity=".7"/>',
-ovo:'<ellipse cx=".8" cy="1.6" rx="11" ry="9" fill="#6A4A20" opacity=".18"/><path d="M-11 0c0-6 5-9 11-9s11 3 11 9-5 9-11 9-11-3-11-9z" fill="#FFFDF7"/><path d="M-11 0c0 6 5 9 11 9" stroke="#E9DDC6" stroke-width="1" fill="none"/><circle cx="1" r="5" fill="url(#gEgg)"/><circle cx="-.6" cy="-1.6" r="1.3" fill="#FFF0B0" opacity=".9"/>',
-tomate:'<circle cx=".8" cy="1.4" r="8.7" fill="#4A0E0A" opacity=".22"/><circle r="8.6" fill="url(#gTom)"/><circle r="5.6" fill="#F47E68" opacity=".9"/><path d="M0-4.4v8.8M-4.4 0h8.8" stroke="#FFC2B0" stroke-width=".9" opacity=".8"/><circle cx="-2.2" cy="-2.2" r=".8" fill="#FFE9C9"/><circle cx="2.2" cy="2.2" r=".8" fill="#FFE9C9"/><path d="M-5.6-4.4A7 7 0 0 1 0-7.2" stroke="#fff" stroke-width="1.3" stroke-linecap="round" opacity=".45" fill="none"/>',
-cebola:'<path d="M-7.4 5.6A9.2 9.2 0 1 1 7 8.2" fill="none" stroke="#2A0820" stroke-width="2.8" stroke-linecap="round" opacity=".2"/><path d="M-8.2 4.2A9.2 9.2 0 1 1 6.2 6.8" fill="none" stroke="#8B356F" stroke-width="2.8" stroke-linecap="round"/><path d="M-8.2 4.2A9.2 9.2 0 1 1 6.2 6.8" fill="none" stroke="#EFD0E6" stroke-width=".9" stroke-linecap="round"/><path d="M-5.2 2.6A6 6 0 1 1 4 4.4" fill="none" stroke="#A54D88" stroke-width="1.6" stroke-linecap="round" opacity=".7"/>',
-azeitona:'<circle cx=".7" cy="1.3" r="6.9" fill="#1A0E06" opacity=".25"/><circle r="6.8" fill="url(#gOli)"/><circle r="2.6" fill="#6B5A4C"/><path d="M-4.2-3.2a5.2 5.2 0 0 1 4-2" stroke="#9A8A7C" stroke-width="1" stroke-linecap="round" fill="none"/>',
-pimentao:'<path d="M-9.6 5.6q10.4-14.6 20.8 0" fill="none" stroke="#10200A" stroke-width="4.4" stroke-linecap="round" opacity=".22"/><path d="M-10.4 4.2q10.4-14.6 20.8 0" fill="none" stroke="#2F5E22" stroke-width="4.4" stroke-linecap="round"/><path d="M-10.4 4.2q10.4-14.6 20.8 0" fill="none" stroke="#4E8B38" stroke-width="3" stroke-linecap="round"/><path d="M-7 1q7-8.4 14 0" fill="none" stroke="#9BCB75" stroke-width="1" stroke-linecap="round"/>',
-milho:'<ellipse rx="3.4" ry="2.8" fill="#EDB72A"/><ellipse cx="-.9" cy="-.9" rx="1.3" ry=".8" fill="#FFE68A"/>',
-lombo:'<ellipse cx=".8" cy="1.6" rx="11" ry="10.4" fill="#5A2018" opacity=".2"/><path d="M-11 0a11 10.4 0 1 0 22 0a11 10.4 0 1 0-22 0z" fill="url(#gLom)"/><path d="M-11 0a11 10.4 0 1 0 22 0" stroke="#B9625B" stroke-width="1.6" fill="none" opacity=".7"/><ellipse cx="-2.6" cy="-2" rx="4.6" ry="2.6" fill="#FFE0DA" opacity=".7"/>',
-abacaxi:'<path d="M-7.6 7.6.8-8.2 9.2 7.6q-8.4 3-16.8 0z" fill="#6A4A10" opacity=".18"/><path d="M-8.4 6.4 0-9.4 8.4 6.4q-8.4 3-16.8 0z" fill="#F6CF4F"/><path d="M-8.4 6.4q8.4 3 16.8 0" stroke="#D99A1F" stroke-width="1.4" fill="none"/><path d="M0-5v8M-3 1h6" stroke="#FFF0A6" stroke-width=".9" opacity=".9"/>',
-geleia:'<ellipse cx=".8" cy="1.4" rx="6" ry="5.6" fill="#4A0A06" opacity=".18"/><path d="M0-6.4c4.4 0 6.4 4.4 4.2 7.4-2.2 3.2-7.4 3.2-9.6 0-2.2-3.2 1-7.4 5.4-7.4z" fill="#D8432A" opacity=".88"/><circle cx="-1.8" cy="-2" r="1.6" fill="#FFC2A8" opacity=".9"/>',
-champignon:'<ellipse cx=".8" cy="2" rx="9.4" ry="6.4" fill="#5A4020" opacity=".2"/><path d="M-9.4 1.2c0-7.6 18.8-7.6 18.8 0z" fill="#EBDCC0"/><path d="M-9.4 1.2c0-7.6 18.8-7.6 18.8 0" stroke="#B49870" stroke-width="1" fill="none"/><rect x="-2.6" y="1.2" width="5.2" height="6.2" rx="1.8" fill="#E2CFAD" stroke="#B49870" stroke-width=".9"/><path d="M-5-2.6c2-1.6 6-1.6 8 0" stroke="#fff" stroke-width="1" fill="none" opacity=".6"/>',
-alho:'<ellipse cx=".6" cy="1" rx="5.6" ry="4.4" fill="#6A4A20" opacity=".2"/><ellipse rx="5.4" ry="4.2" fill="#EFCB85"/><ellipse cx="-.2" cy="-.2" rx="4.2" ry="3.1" fill="#FFF5DC"/><path d="M-2.6.2c1.3-1 3.9-1 5.2 0" stroke="#D9AE5E" stroke-width=".8" fill="none"/><ellipse cx="-1.6" cy="-1.3" rx="1.3" ry=".6" fill="#fff"/>',
-presunto:'<ellipse cx=".8" cy="1.6" rx="10.4" ry="6.4" fill="#6A2030" opacity=".18"/><path d="M-10.4-6.2c6.2-3.2 14.6-2.2 18.8 2.2 2 5.2-2.2 9.4-8.4 9.4-6.2 0-12.6-3.2-11.4-7.4z" fill="#EFA9B0"/><path d="M-6.4-2.2c4.2-1 8.4 0 10.4 2.2" stroke="#FAD4D8" stroke-width="1.5" fill="none"/><path d="M-10.4-6.2c6.2-3.2 14.6-2.2 18.8 2.2" stroke="#D8838D" stroke-width=".8" fill="none"/>',
-manjericao:'<path d="M.8-9.6C8.4-4 8.4 6.8.8 12.4-6.8 6.8-6.8-4 .8-9.6z" fill="#10200A" opacity=".2"/><path d="M0-11C7.6-5.4 7.6 5.4 0 11-7.6 5.4-7.6-5.4 0-11z" fill="url(#gLeaf)"/><path d="M0-9V9M0-3l3.4-2.6M0 2l-3.4-2.6" stroke="#A6D487" stroke-width=".8" stroke-linecap="round" opacity=".85"/>',
-parmesao:'<path d="M-4.6-3.6l8.2-1 1.2 7.6-8.4 1.6z" fill="#FFF0C2" stroke="#E7CC86" stroke-width=".8"/>',
-provolone:'<rect x="-3.6" y="-3.4" width="8.8" height="8.8" rx="2.4" fill="#6A4A10" opacity=".2"/><rect x="-4.4" y="-4.4" width="8.8" height="8.8" rx="2.4" fill="#FFDA7A" stroke="#E2B24B" stroke-width=".8"/><rect x="-2.8" y="-3" width="3.6" height="1.6" rx=".8" fill="#fff" opacity=".5"/>',
-gorgonzola:'<path d="M-4.6-3.2c3.4-2.2 7.6 0 6.6 3.4-1 3.2-6.4 3.2-7.6 0z" fill="#EEF0E6"/><circle cx="-1" cy="-.4" r="1.1" fill="#6F8A92"/><circle cx="1.6" cy=".8" r=".8" fill="#6F8A92"/>',
-banana:'<circle cx=".8" cy="1.5" r="9.5" fill="#6A4A10" opacity=".2"/><circle r="9.4" fill="url(#gBan)"/><circle r="8.6" fill="none" stroke="#D9AE57" stroke-width="1.4"/><circle r="2.8" fill="#D9B176" opacity=".55"/><circle cx="2.8" cy="-1" r=".7" fill="#6E4E30"/><circle cx="-2.1" cy="2.1" r=".7" fill="#6E4E30"/><circle cx="-1.6" cy="-2.8" r=".7" fill="#6E4E30"/><path d="M-6-5A8 8 0 0 1 1-8" stroke="#fff" stroke-width="1.2" stroke-linecap="round" opacity=".5" fill="none"/>',
-morango:'<ellipse cx=".8" cy="2" rx="8" ry="9" fill="#4A0A10" opacity=".2"/><path d="M0 9.6C-9.6 3.2-9.6-7.4-3.2-8.6c2.2 0 3.2 1 3.2 2.2 0-1.2 1-2.2 3.2-2.2 6.4 1.2 6.4 11.8-3.2 18.2z" fill="url(#gMor)"/><path d="M0 6.4C-5.4 2.2-5.4-4.2-2.2-5.4c2.2 0 2.2 1 2.2 2.2 0-1.2 0-2.2 2.2-2.2 3.2 1.2 3.2 7.6-2.2 11.8z" fill="#FF8F88" opacity=".8"/><circle cx="-3" cy="-2" r=".6" fill="#FFE9B8"/><circle cx="2.8" cy="0" r=".6" fill="#FFE9B8"/><circle cx="0" cy="3.2" r=".6" fill="#FFE9B8"/>',
-confete:'<circle r="3.9"/><circle cx="-1.2" cy="-1.3" r="1.2" fill="#fff" opacity=".5"/>',
-granulado:'<rect x="-3.3" y="-.5" width="7" height="2.2" rx="1.1" fill="#1A0C05" opacity=".35"/><rect x="-3.5" y="-1.1" width="7" height="2.2" rx="1.1" fill="#3B1D10"/><rect x="-2.6" y="-.95" width="3.8" height=".75" rx=".37" fill="#D9A77F"/>',
-coco:'<path d="M-3.8.7q4.2-2.6 8.4 0" stroke="#3A1E0A" stroke-width="2.1" stroke-linecap="round" fill="none" opacity=".35"/><path d="M-4.2 0q4.2-2.6 8.4 0" stroke="#FFFDF8" stroke-width="2.1" stroke-linecap="round" fill="none"/>',
-goiabada:'<rect x="-4.4" y="-4" width="10.4" height="10.4" rx="2.8" fill="#3A0A10" opacity=".22"/><rect x="-5.2" y="-5.2" width="10.4" height="10.4" rx="2.8" fill="url(#gGoi)"/><rect x="-3.2" y="-3.6" width="4.2" height="2" rx="1" fill="#F07D8E" opacity=".6"/>',
-amendoim:'<ellipse cx=".5" cy=".9" rx="4.8" ry="3.4" fill="#3A1E0A" opacity=".3"/><path d="M-4.4.2c0-2.4 2-3.4 4.4-3.4s4.4 1 4.4 3.2-2 3.2-4.4 3.2S-4.4 2.6-4.4.2z" fill="#D49A4C"/><path d="M-4.4.2c0 2.4 2 3 4.4 3s4.4-1 4.4-3" fill="#A86A2C"/><ellipse cx="-1.2" cy="-1.2" rx="1.9" ry=".9" fill="#F3D199"/>',
-pistache:'<ellipse cx=".6" cy="1" rx="4.6" ry="3.2" fill="#2E3A12" opacity=".25"/><path d="M-4.2-1.4l3.8-2.6 4.2 1.4.6 3.4-3.8 2.4-4.4-1z" fill="#86AE4A"/><path d="M-4.2-1.4l3.8-2.6 4.2 1.4" stroke="#7A4E3A" stroke-width="1.1" fill="none" stroke-linejoin="round" opacity=".85"/><path d="M-1.6-.4l2.8-.7" stroke="#DCEEAA" stroke-width="1" stroke-linecap="round"/>',
-raspa:'<path d="M-5.6 1.6c1.6-4 9.8-4.6 11.4-.6-1.8 2.8-9.4 3.4-11.4.6z" fill="#6E4E26" opacity=".22" transform="translate(.8 1.4)"/><path d="M-5.6 1.2c1.6-4 9.8-4.6 11.4-.6-1.8 2.8-9.4 3.4-11.4.6z" fill="#FFFDF7" stroke="#DCC29A" stroke-width=".7"/><path d="M-3.8-.6c1.8-1.6 5.6-1.8 7.6-.4" stroke="#E6D2B0" stroke-width=".8" fill="none" stroke-linecap="round"/><path d="M-3.4-1.6c1.4-.9 3.6-1 5-.4" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round"/>',
-caramelo:'<ellipse rx="9" ry="6" fill="#DDA35A" opacity=".55"/><ellipse rx="5" ry="3" fill="#B97A36" opacity=".45"/>',
-azeite:'<ellipse rx="6" ry="3.6" fill="#D2A62E" opacity=".42"/><ellipse cx=".4" cy=".2" rx="4.2" ry="2.3" fill="#F0CF55" opacity=".55"/><ellipse cx="-1.9" cy="-1.1" rx="1.8" ry=".8" fill="#fff" opacity=".75"/>'
-};
-
+/* orégano: flocos secos irregulares (verde-oliva a pardo) */
+var ORE=['M-2.3-.6L-.6-2.1 1.9-1.5 2.2.7.4 1.9-1.9 1.2Z','M-1.8-1.4L1.2-2 2.4.2.8 1.6-2.2.9Z','M-2-1L.2-1.8 1.6-.6 1.2 1.4-1.4 1.6Z','M-1.2-.8L1.4-1.2 1.8.6-.4 1Z'],ORC=['#3F5A22','#56692B','#6B6A2E','#4A6326','#7A7436'];
 var CONF=['#D7282F','#F2B233','#3F7A2F','#3A7BD5','#E26AA0'];
 var SAUCE={molho:'#C8402A',choco:'#5A2E1A',chocobranco:'#FFF6E4',nutella:'#6B3A1E',pistachecreme:'#B9C677'};
 /* R0 = raio do sprite (unid. do símbolo 28×28); TR = raio exibido (px no viewBox 400); N = qtd. na pizza inteira */
 var T={
-calabresa:{R0:10.4,TR:15.5,N:17},bacon:{R0:12.6,TR:16.5,N:13,rot:1},frango:{R0:9.4,TR:12,N:18,rot:1},catupiry:{R0:9.4,TR:12.5,N:11},
-ovo:{R0:11,TR:16,N:8,rot:1},tomate:{R0:8.8,TR:12.5,N:13},cebola:{R0:10.4,TR:13.5,N:13,rot:1},pimentao:{R0:10.6,TR:13.5,N:11,rot:1},
-lombo:{R0:11,TR:15.5,N:13},abacaxi:{R0:9.4,TR:12.5,N:13,rot:1},geleia:{R0:6.6,TR:9,N:14},champignon:{R0:9.6,TR:12.5,N:13,rot:1},
-presunto:{R0:10.6,TR:15,N:11,rot:1},banana:{R0:9.6,TR:13.5,N:18},morango:{R0:9.6,TR:13,N:17,rot:1},goiabada:{R0:7.3,TR:10,N:17,rot:1},
-parmesao:{R0:6,TR:8,N:26,rot:1},provolone:{R0:6.2,TR:9,N:18,rot:1},gorgonzola:{R0:5.6,TR:8.5,N:18,rot:1},azeitona:{R0:6.9,TR:9.2,N:13},
+calabresa:{R0:10.4,TR:16.5,N:17,rot:1},bacon:{R0:13,TR:17.5,N:13,rot:1},frango:{R0:13,TR:18,N:23,rot:1},catupiry:{R0:9.6,TR:14,N:11,rot:1},
+ovo:{R0:9.6,TR:15,N:8,rot:1},tomate:{R0:8.4,TR:13,N:13,rot:1},cebola:{R0:9.8,TR:14.5,N:13,rot:1},pimentao:{R0:9.8,TR:14.5,N:11,rot:1},
+lombo:{R0:10.8,TR:16.5,N:13,rot:1},abacaxi:{R0:9.2,TR:12.5,N:13,rot:1},geleia:{R0:6.6,TR:10,N:15,rot:1},champignon:{R0:9.8,TR:14,N:13,rot:1},
+presunto:{R0:10.8,TR:16.5,N:12,rot:1},banana:{R0:9.3,TR:13.5,N:18},morango:{R0:9.8,TR:14.5,N:17,rot:1},goiabada:{R0:6,TR:11.5,N:16,rot:1},
+parmesao:{R0:6.4,TR:9,N:34,rot:1},provolone:{R0:9.2,TR:14,N:10,rot:1},gorgonzola:{R0:5.8,TR:8.5,N:18,rot:1},azeitona:{R0:6.8,TR:9.2,N:13,rot:1},
 manjericao:{R0:11,TR:12,N:9,rot:1,herb:1},azeite:{R0:6,TR:9,N:12,rot:1,herb:1},
-alho:{R0:5.6,TR:7.2,N:30,fine:1,rot:1},milho:{R0:3.4,TR:4.6,N:46,fine:1,rot:1},confete:{R0:3.9,TR:5,N:52,fine:1},granulado:{R0:3.6,TR:5.8,N:120,fine:1,rot:1},
-coco:{R0:4.2,TR:5.6,N:110,fine:1,rot:1},amendoim:{R0:4.8,TR:6.6,N:56,fine:1,rot:1},pistache:{R0:4.6,TR:6.4,N:58,fine:1,rot:1}
+alho:{R0:5,TR:6.8,N:30,fine:1,rot:1},milho:{R0:3.3,TR:4.8,N:46,fine:1,rot:1},confete:{R0:3.9,TR:5,N:52,fine:1},granulado:{R0:3.6,TR:5.8,N:120,fine:1,rot:1},
+coco:{R0:4.2,TR:6,N:130,fine:1,rot:1},amendoim:{R0:4.8,TR:6.6,N:56,fine:1,rot:1},pistache:{R0:4.6,TR:6.4,N:58,fine:1,rot:1}
 };
 function cls(id){var t=T[id];return !t?9:t.herb?3:t.fine?2:t.TR>=11?0:1} // 0 grande, 1 média, 2 miúda, 3 erva
 
@@ -123,7 +81,7 @@ function Viz(host){
     '<clipPath id="pzW"><circle cx="200" cy="200" r="'+RIN+'"/></clipPath>'+
     '<clipPath id="pzL"><path d="M200 '+(C-RIN)+'A'+RIN+' '+RIN+' 0 0 0 200 '+(C+RIN)+'Z"/></clipPath>'+
     '<clipPath id="pzR"><path d="M200 '+(C-RIN)+'A'+RIN+' '+RIN+' 0 0 1 200 '+(C+RIN)+'Z"/></clipPath>';
-  Object.keys(SPR).forEach(function(k){var g=el('symbol',{id:'t-'+k,viewBox:'-14 -14 28 28',overflow:'visible'},defs);g.innerHTML=SPR[k]});
+  Object.keys(SPR).forEach(function(k){[].concat(SPR[k]).forEach(function(src,v){var g=el('symbol',{id:'t-'+k+(v?'-'+v:''),viewBox:'-14 -14 28 28',overflow:'visible'},defs);g.innerHTML=src})});
   el('ellipse',{cx:200,cy:214,rx:188,ry:180,fill:'rgba(90,58,36,.18)',filter:'url(#pzSoft)'},s);
   var dough=this.dough=el('g',{},s);this.dough.setAttribute('class','dough');
   el('path',{d:blob(184,3,5,24),fill:'url(#pzCrust)'},dough);
@@ -252,15 +210,19 @@ Viz.prototype.into=function(sl,f,removed,delay){
       P.smil=el('animate',{attributeName:'d',from:P.small,to:P.big,dur:(STEP*1.15/1000)+'s',begin:'indefinite',fill:'freeze',calcMode:'spline',keyTimes:'0;1',keySplines:'.3 .7 .2 1'},P.main);
       var rb=rng(ps+3),cp=vogel(sl,half?8:16,14,rb);cp.forEach(function(p,q){var cx=p[0].toFixed(1),cy=p[1].toFixed(1);
         P.extra.push(q%3===0?el('circle',{cx:cx,cy:cy,r:9+rb()*7,fill:'url(#pzBrown)','data-o':1},pg):el('ellipse',{cx:cx,cy:cy,rx:6+rb()*7,ry:3+rb()*3,transform:'rotate('+(rb()*180|0)+' '+cx+' '+cy+')',fill:'#FFFCF0','data-o':.85},pg))});
+      // bolhas: a mussarela derretida estufa e doura nas pontas
+      vogel(sl,half?8:15,10,rng(ps+5)).forEach(function(p){var bx=(p[0]+(rb()-.5)*8).toFixed(1),by=(p[1]+(rb()-.5)*8).toFixed(1),br=(3+rb()*3.6).toFixed(1);
+        P.extra.push(el('circle',{cx:bx,cy:by,r:br,fill:'#FFF5D6',stroke:'#D89A4A','stroke-width':1.3,'data-o':.85},pg));
+        P.extra.push(el('circle',{cx:(+bx-br*.3).toFixed(1),cy:(+by-br*.35).toFixed(1),r:(br*.32).toFixed(1),fill:'#FFFFFF','data-o':.85},pg))});
     }else if(it.id==='barbecue'){P.type='lines';drawLines(pg,P,'#6B2E16',ps,3.8)}
     else if(SAUCE[it.id]){P.type='lines';drawLines(pg,P,SAUCE[it.id],ps,4.4)}
     else if(it.id==='oregano'){P.fine=true;var ro=rng(ps);vogel(sl,half?70:140,2.4,ro).forEach(function(p){var o0=el('g',{transform:'translate('+p[0].toFixed(1)+' '+p[1].toFixed(1)+')'},pg),dot=el('g',{},o0);
-        el('path',{d:'M-2.2 0c0-1.5 1.2-2.4 2.2-2.4s2.2.9 2.2 2.4-1 1.8-2.2 1.8-2.2-.4-2.2-1.8z',fill:ro()>.5?'#3F5A22':'#5F7330',transform:'rotate('+(ro()*180|0)+')'},dot);P.items.push(dot)})}
+        el('path',{d:ORE[(ro()*ORE.length)|0],fill:ORC[(ro()*ORC.length)|0],transform:'rotate('+(ro()*360|0)+') scale('+(.8+ro()*.5).toFixed(2)+')'},dot);P.items.push(dot)})}
     else{var tt=T[it.id],c=cls(it.id),n=Math.ceil(tt.N*(half?.5:1)*(c<2?fit:1)),r6=rng(ps),W=28*tt.TR/tt.R0;P.fine=c===2;
       var pts=c===2?vogel(sl,n,tt.TR,r6):bestCandidate(sl,n,tt.TR,placed,r6,c===3?.45:1.04);
       pts.forEach(function(p,j){var og=el('g',{transform:'translate('+p[0].toFixed(1)+' '+p[1].toFixed(1)+')'},pg),inner=el('g',{},og),
           rot=el('g',{transform:'rotate('+(tt.rot?(r6()*360).toFixed(0):0)+') scale('+(.95+r6()*.1).toFixed(3)+')'},inner);
-        var u2=el('use',{href:'#t-'+it.id,width:W.toFixed(1),height:W.toFixed(1),x:(-W/2).toFixed(1),y:(-W/2).toFixed(1)},rot);if(it.id==='confete')u2.setAttribute('fill',CONF[j%CONF.length]);P.items.push(inner)})}
+        var vv=VAR[it.id]||1,vk=vv>1?(j+(seed>>>3))%vv:0,u2=el('use',{href:'#t-'+it.id+(vk?'-'+vk:''),width:W.toFixed(1),height:W.toFixed(1),x:(-W/2).toFixed(1),y:(-W/2).toFixed(1)},rot);if(it.id==='confete')u2.setAttribute('fill',CONF[j%CONF.length]);P.items.push(inner)})}
     if(removed.has(it.id)&&!it.fixo){P.on=false;pg.style.display='none'}
     else{var d=self.partIn(P,t);t+=reduce?0:d}
   });
@@ -299,7 +261,9 @@ function thumbKey(st,px){return (st.a?st.a.nome:'')+'|'+(st.b?st.b.nome:'')+'|'+
 function thumbSVG(st){var R=reduce;reduce=true;MUTE=true;var host=document.createElement('div'),v;
   host.style.cssText='position:fixed;left:-10000px;top:0;width:120px;height:120px;overflow:hidden;pointer-events:none;visibility:hidden';host.setAttribute('aria-hidden','true');document.body.appendChild(host);
   try{v=new Viz(host);v.set({mode:st.b?'meio':'inteira',a:st.a,b:st.b||null,borda:!!st.borda,remA:new Set(),remB:new Set()})}finally{reduce=R;MUTE=false}
-  [].forEach.call(v.svg.querySelectorAll('animate'),function(n){n.parentNode.removeChild(n)});v.steam.parentNode.removeChild(v.steam);
+  [].forEach.call(v.svg.querySelectorAll('animate'),function(n){n.parentNode.removeChild(n)});
+  // só leva para a miniatura os desenhos de ingrediente que essa pizza usa (SVG serializado bem menor)
+  var used={};[].forEach.call(v.svg.querySelectorAll('use'),function(u){used[(u.getAttribute('href')||'').slice(1)]=1});[].forEach.call(v.svg.querySelectorAll('symbol'),function(sy){if(!used[sy.id])sy.parentNode.removeChild(sy)});v.steam.parentNode.removeChild(v.steam);
   v.svg.setAttribute('xmlns',NS);v.svg.setAttribute('width','420');v.svg.setAttribute('height','420');v.svg.removeAttribute('role');
   var s=new XMLSerializer().serializeToString(v.svg);host.parentNode.removeChild(host);return s}
 function thumbRun(){if(THbusy||!THQ.length)return;THbusy=true;var job=THQ.shift(),k=job.k;
