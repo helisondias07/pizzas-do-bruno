@@ -143,14 +143,15 @@ function scatterFrom(node,i,fine){
   var rot=(i%2?1:-1)*(fine?22:50)+side*5;
   return {x:sx.toFixed(1),y:sy.toFixed(1),rot:rot.toFixed(0)};
 }
-/* Manchas de forno: 2–3 por fatia, mais perto da borda. */
+/* Manchas de forno: poucas, pequenas e quase redondas. O degradê pzBrown some na borda. */
 function cheeseSpots(sl,seed){
   var r=rng(seed),angs=sliceAngles(sl),out=[];
-  angs.forEach(function(a){var n=2+(r()*2|0),k;for(k=0;k<n;k++){
-    var bias=k===0?.8+r()*.12:.32+r()*.42,th=a+(r()-.5)*.62,rr=RCH*bias;
+  angs.forEach(function(a){var n=1+(r()<0.45?1:0),k;for(k=0;k<n;k++){
+    var bias=.5+r()*.4,th=a+(r()-.5)*.55,rr=RCH*bias;
     var x=C+rr*Math.cos(th),y=C+rr*Math.sin(th);
-    if(!fits(sl,x,y,6,.15))continue;
-    out.push({x:x,y:y,rot:r()*180,sx:.65+r()*1.15,sy:.4+r()*.75,seed:(r()*1e9)|0,dark:r()});
+    if(!fits(sl,x,y,4,.2))continue;
+    var rx=4.2+r()*3.2,ry=rx*(.82+r()*.16);
+    out.push({x:x,y:y,rot:(r()-.5)*36,rx:rx,ry:ry,o:.22+r()*.2});
   }});
   return out;
 }
@@ -184,7 +185,7 @@ function Viz(host){
     '<radialGradient id="pzCheese" cx="46%" cy="40%" r="70%"><stop offset="0" stop-color="#FFF9EE"/><stop offset=".22" stop-color="#FBE7C6"/><stop offset=".55" stop-color="#F0D09A"/><stop offset=".82" stop-color="#E4B56E"/><stop offset="1" stop-color="#D7A45A"/></radialGradient>'+
     '<radialGradient id="pzCheeseDeep" cx="42%" cy="48%" r="62%"><stop offset="0" stop-color="#F6D9A4" stop-opacity=".72"/><stop offset=".7" stop-color="#E8C080" stop-opacity=".28"/><stop offset="1" stop-color="#E8C080" stop-opacity="0"/></radialGradient>'+
     '<radialGradient id="pzGloss" cx="34%" cy="28%" r="62%"><stop offset="0" stop-color="#fff" stop-opacity=".42"/><stop offset=".45" stop-color="#fff" stop-opacity=".08"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>'+
-    '<radialGradient id="pzBrown" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#C86E28" stop-opacity=".85"/><stop offset=".55" stop-color="#E09A40" stop-opacity=".4"/><stop offset="1" stop-color="#E8B45A" stop-opacity="0"/></radialGradient>'+
+    '<radialGradient id="pzBrown" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#E0A04A" stop-opacity=".55"/><stop offset=".45" stop-color="#E8BC6A" stop-opacity=".22"/><stop offset="1" stop-color="#F0D090" stop-opacity="0"/></radialGradient>'+
     '<radialGradient id="pzChar" cx="45%" cy="40%" r="55%"><stop offset="0" stop-color="#5A2A12" stop-opacity=".8"/><stop offset="1" stop-color="#8A4A1C" stop-opacity="0"/></radialGradient>'+
     '<radialGradient id="pzCat" cx="36%" cy="30%" r="72%"><stop offset="0" stop-color="#FFFEF9"/><stop offset=".4" stop-color="#FBF3E2"/><stop offset=".75" stop-color="#F0E0C0"/><stop offset="1" stop-color="#E4CFA6"/></radialGradient>'+
     '<radialGradient id="pzFlap" gradientUnits="userSpaceOnUse" cx="200" cy="196" r="186"><stop offset=".84" stop-color="#F0CB88"/><stop offset=".92" stop-color="#E2AC62"/><stop offset="1" stop-color="#C2833F"/></radialGradient>'+
@@ -293,11 +294,9 @@ function drawCheese(pg,P,sl,ps){
   var gl=rng(ps+8),g;for(g=0;g<5;g++){var a0=gl()*6.28,span=.85+gl()*1.25,r0=26+gl()*96,d='',k;
     for(k=0;k<=16;k++){var th=a0+span*k/16,rr=r0+4.5*Math.sin(k*.7);d+=(k?'L':'M')+(C+rr*Math.cos(th)).toFixed(1)+' '+(C+rr*Math.sin(th)).toFixed(1)}
     P.extra.push(el('path',{d:d,fill:'none',stroke:'#FFFDF8','stroke-width':(2.2+gl()*2.8).toFixed(1),'stroke-linecap':'round','data-o':.5},pg))}
-  cheeseSpots(sl,ps+3).forEach(function(sp){var col=sp.dark>.62?'#7A3410':sp.dark>.32?'#B85A1C':'#D4843A';
-    var grp=el('g',{transform:'translate('+sp.x.toFixed(1)+' '+sp.y.toFixed(1)+') rotate('+sp.rot.toFixed(0)+') scale('+(sp.sx*1.35).toFixed(2)+' '+(sp.sy*1.2).toFixed(2)+')','data-o':(.72+sp.dark*.22).toFixed(2)},pg);
-    el('path',{d:blob0(13,sp.seed,4.2,8),fill:col},grp);
-    if(sp.dark>.35)el('path',{d:blob0(5.2,sp.seed+2,2.2,6),fill:'#4E220C',opacity:.5},grp);
-    P.extra.push(grp)});
+  cheeseSpots(sl,ps+3).forEach(function(sp){
+    var xs=sp.x.toFixed(1),ys=sp.y.toFixed(1);
+    P.extra.push(el('ellipse',{cx:xs,cy:ys,rx:sp.rx.toFixed(1),ry:sp.ry.toFixed(1),transform:'rotate('+sp.rot.toFixed(0)+' '+xs+' '+ys+')',fill:'url(#pzBrown)','data-o':sp.o.toFixed(2)},pg))});
   var bb=rng(ps+5),angs=sliceAngles(sl),bi,bk;for(bi=0;bi<angs.length;bi++){for(bk=0;bk<2;bk++){if(bb()>.7)continue;
     var rr=RCH*(.42+bb()*.42),th=angs[bi]+(bb()-.5)*.45,rad=3+bb()*3.2,x=C+rr*Math.cos(th),y=C+rr*Math.sin(th);
     if(!fits(sl,x,y,rad,.2))continue;
