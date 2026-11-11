@@ -7,6 +7,7 @@ import { paintTipo } from '../DeliveryChoice/delivery-choice.client.js';
 import { toastMsg } from '../Toast/toast.client.js';
 import { doSend } from '../../lib/address.js';
 import { info, label, pizzaPrice, totals } from '../../lib/cart-store.js';
+import { playPackAnimation, BoxStage } from '../../lib/pack-animation.js';
 import { $, $$, brl, brl0, buzz, reduce } from '../../lib/utils.js';
 
 // total que sobe como contador
@@ -28,10 +29,10 @@ export function renderOrder(){var ol=$('#orderList');if(typeof paintTipo==='func
 
 export function init(){
 $('#addBtn').onclick=function(){if(!cur.a)return;var it={mode:cur.mode,a:cur.a,b:cur.mode==='meio'?cur.b:null,borda:cur.borda,remA:new Set(cur.remA),remB:new Set(cur.mode==='meio'?cur.remB:[]),qty:1};
-  var k=label(it),ex=S.order.filter(function(o){return label(o)===k})[0];if(ex)ex.qty++;else S.order.push(it);renderOrder();koala();buzz();$('#addBtn').classList.remove('nudge');bumpCart();
-  toastMsg('<b>Pizza adicionada!</b> <button type="button" class="tl" data-open-cart>Ver pedido e pedir pelo WhatsApp</button>');track('add_to_cart',{flavor:k});
-  if(!reduce&&$('#orderList').lastElementChild)$('#orderList').lastElementChild.animate([{transform:'translateY(10px)',opacity:0},{transform:'none',opacity:1}],{duration:500,easing:'cubic-bezier(.22,1,.36,1)'});
-  var pv=$('#pizzaViz');if(!reduce)pv.animate([{transform:'none'},{transform:'scale(.94) rotate(-6deg)'},{transform:'none'}],{duration:500,easing:'cubic-bezier(.34,1.56,.64,1)'})};
+  var add=function(){var k=label(it),ex=S.order.filter(function(o){return label(o)===k})[0];if(ex)ex.qty++;else S.order.push(it);renderOrder();koala();buzz();$('#addBtn').classList.remove('nudge');bumpCart();
+    toastMsg('<b>Pizza adicionada!</b> <button type="button" class="tl" data-open-cart>Ver pedido e pedir pelo WhatsApp</button>');track('add_to_cart',{flavor:k});
+    if(!reduce&&$('#orderList').lastElementChild)$('#orderList').lastElementChild.animate([{transform:'translateY(10px)',opacity:0},{transform:'none',opacity:1}],{duration:500,easing:'cubic-bezier(.22,1,.36,1)'})};
+  Promise.resolve(BoxStage.closeLid()).then(add).then(function(){return BoxStage.reopen()})};
 $('#cocaMinus').onclick=function(){S.coca=Math.max(0,S.coca-1);renderOrder()};
 $('#cocaPlus').onclick=function(){S.coca++;buzz();bumpCart();renderOrder()};
 }
