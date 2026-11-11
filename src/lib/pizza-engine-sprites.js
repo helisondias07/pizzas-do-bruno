@@ -43,7 +43,7 @@ function shadow(d, dx, dy, col, op) { return P(d, { fill: col, opacity: op, tran
 
 /* fiapo (frango desfiado, lascas de queijo, atum...): fita afunilada, levemente curva e irregular */
 function strand(r, ax, ay, ang, len, w) {
-  var bend = (r() - .5) * len * .55, c = Math.cos(ang), s = Math.sin(ang), K = 9, L = [], R = [], mid = [];
+  var bend = (r() - .5) * len * (w < 2.2 ? .16 : .55), c = Math.cos(ang), s = Math.sin(ang), K = 9, L = [], R = [], mid = [];
   for (var i = 0; i <= K; i++) {
     var t = i / K, x = (t - .5) * len, y = bend * 4 * t * (1 - t) + Math.sin(t * 7 + ax) * .35;
     // tangente aproximada para a normal
@@ -81,11 +81,11 @@ export const GRADS =
 
 /* ---------- frango desfiado: tufos de fiapos alongados, dourado/bege, com fibras ---------- */
 function frango(seed) {
-  var r = rng(seed), out = '', sh = '', body = '', fib = '', base = r() * Math.PI, k = 8 + (r() * 3 | 0);
-  var cols = ['#E8B86A', '#D4A050', '#F0C888', '#C88840', '#E0B060', '#F6D8A4'];
+  var r = rng(seed), out = '', sh = '', body = '', fib = '', base = r() * Math.PI, k = 14 + (r() * 4 | 0);
+  var cols = ['#E8C48A', '#D7B06A', '#F3D7A4', '#C99858', '#E6C07A', '#F7E2B4'];
   for (var i = 0; i < k; i++) {
-    var a = base + (r() - .5) * 1.5, rr = Math.sqrt(r()) * 7.4, th = r() * Math.PI * 2;
-    var S = strand(r, Math.cos(th) * rr, Math.sin(th) * rr * .8, a, 11 + r() * 9, 2.5 + r() * 1.8), col = cols[i % cols.length];
+    var a = base + (r() - .5) * .8, rr = Math.sqrt(r()) * 8.2, th = r() * Math.PI * 2;
+    var S = strand(r, Math.cos(th) * rr, Math.sin(th) * rr * .85, a, 7 + r() * 6, 1.05 + r() * .75), col = cols[i % cols.length];
     sh += P(S.d, {});
     body += P(S.d, { fill: col, stroke: '#9A6230', 'stroke-width': '.55', 'stroke-linejoin': 'round' });
     // fibras: linhas claras e escuras correndo ao longo do fiapo
